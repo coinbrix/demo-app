@@ -21,7 +21,7 @@ This is a demo web-app to use gamepay web-sdk.
       __gamePay("init");
     </script>
 ```
-    Visit https://github.com/coinbrix/demo-app/blob/master/public/index.html
+Visit https://github.com/coinbrix/demo-app/blob/master/public/index.html
 
 2. Create a CTA in your web-app to open GamePay drawer. The CTA should call __gamepay object
 
@@ -30,6 +30,6 @@ function openDrawer(){
   window.__gamePay("event","open");
 }
 ```
-    Visit https://github.com/coinbrix/demo-app/blob/master/src/App.js
+Visit https://github.com/coinbrix/demo-app/blob/master/src/App.js
 
 
