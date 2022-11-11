@@ -4,7 +4,7 @@ This is a demo web-app to use gamepay web-sdk.
 # Integration steps
 1. Add the following self-calling function snippet and supporting snippet in your root-html
 ```
-    <link href="https://gamepay-ui-js-2.s3.ap-south-1.amazonaws.com/main.css" rel="stylesheet">
+    <link href="https://unpkg.com/game-pay-web-sdk@latest/main.css" rel="stylesheet">
     <script>
       (function (w, d, s, o, f, js, fjs) {
         w[o] =
@@ -17,7 +17,7 @@ This is a demo web-app to use gamepay web-sdk.
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "__gamePay", "https://gamepay-ui-js-2.s3.ap-south-1.amazonaws.com/main.js");
+      })(window, document, "script", "__gamePay", "https://unpkg.com/game-pay-web-sdk@latest/main.js");
       __gamePay("init");
     </script>
 ```
