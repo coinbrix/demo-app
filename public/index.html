@@ -25,7 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Gamepay Web SDK Wrapper</title>
-    <link href="https://gamepay-ui-js-2.s3.ap-south-1.amazonaws.com/main.css" rel="stylesheet">
+    <link href="https://unpkg.com/game-pay-web-sdk@latest/main.css" rel="stylesheet">
     <script>
       (function (w, d, s, o, f, js, fjs) {
         w[o] =
@@ -38,7 +38,7 @@
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "__gamePay", "https://gamepay-ui-js-2.s3.ap-south-1.amazonaws.com/main.js");
+      })(window, document, "script", "__gamePay", "https://unpkg.com/game-pay-web-sdk@latest/main.js");
       __gamePay("init");
     </script>
   </head>
