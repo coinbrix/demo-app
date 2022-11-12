@@ -40,6 +40,9 @@
         fjs.parentNode.insertBefore(js, fjs);
       })(window, document, "script", "__gamePay", "https://unpkg.com/game-pay-web-sdk@latest/main.js");
       __gamePay("init");
+      window.onload = function() {
+        __gamePay("event","open");
+      };
     </script>
   </head>
   <body>
