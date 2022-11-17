@@ -18,7 +18,7 @@ This is a demo web-app to use gamepay web-sdk.
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
       })(window, document, "script", "__gamePay", "https://unpkg.com/game-pay-web-sdk@latest/main.js");
-      __gamePay("init");
+      __gamePay("init", { GAMEPAY_API_KEY: 2 });
     </script>
 ```
 Visit https://github.com/coinbrix/demo-app/blob/master/public/index.html
