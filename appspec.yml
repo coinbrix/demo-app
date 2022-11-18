@@ -12,8 +12,8 @@ files:
 permissions:
   - object: /
     pattern: "**"
-    owner: ec2-user
-    group: ec2-user
+    owner: 219903070214
+    group: sg-00a47fa8f67706eb2
 
 hooks:
 
