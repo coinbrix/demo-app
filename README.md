@@ -32,10 +32,6 @@ function openDrawer(){
 ```
 Visit https://github.com/coinbrix/demo-app/blob/master/src/App.js
 
-3. After the user logs in, we will store the user's public addresses used for login in an object which you can access at any time by calling the 
 ```
-function getUserInfo(){
-  window.__gamePay("event","getConnectUserInfo",(walletinfo, userinfo, usermode) => { console.log(walletinfo, userinfo, usermode) }) ;
-}
 ```
-4. User can hit the "x" button inside the drawer to close it.
+3. User can hit the "x" button inside the drawer to close it.
