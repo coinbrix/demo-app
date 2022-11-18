@@ -13,7 +13,7 @@ permissions:
   - object: /
     pattern: "**"
     owner: 219903070214
-    group: sg-00a47fa8f67706eb2
+    group: sg-09671f92083c7effd
 
 hooks:
 
