@@ -33,5 +33,8 @@ function openDrawer(){
 Visit https://github.com/coinbrix/demo-app/blob/master/src/App.js
 
 ```
+function getUserInfo(){
+  window.__gamePay("event","getConnectUserInfo",(walletinfo, userinfo, usermode) => { console.log(walletinfo, userinfo, usermode) }) ;
+}
 ```
 3. User can hit the "x" button inside the drawer to close it or can call window.__gamePay("event","close");
