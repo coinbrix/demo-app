@@ -1,5 +1,5 @@
 # Getting Started with GamePay Web SDK
-This is a demo web-app to use gamepay web-sdk.
+This is a demo web-app to use Singularity web-sdk.
 
 # Integration steps
 1. Add the following self-calling function snippet and supporting snippet in your root-html
