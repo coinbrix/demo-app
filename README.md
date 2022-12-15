@@ -7,26 +7,6 @@ This is a demo web-app to use Singularity web-sdk.
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Gamepay Web SDK Wrapper</title>
     <link href="https://cdn.jsdelivr.net/npm/game-pay-web-sdk@1.9.0-sandbox.9/main.css" rel="stylesheet">
     <script>
       (function (w, d, s, o, f, js, fjs) {
@@ -44,49 +24,8 @@ This is a demo web-app to use Singularity web-sdk.
       Singularity('init', {
         GAMEPAY_API_KEY: 2
       });
-            window.addEventListener('DOMContentLoaded', function () {
-        /** For real time events subscribe below methods - START **/
-        // 1. subscribe for walletDetails info.
-        //    triggers both in case of login/logut action
-        const handleWalletInfo = (event) => {
-          const walletDetails = event.detail.callback();
-          console.log('Wallet details', walletDetails);
-        };
-        SingularityEvent.subscribe('walletInfo', handleWalletInfo);
-
-        // 2. subscribe for open drawer event
-        const handleDrawerOpen = () => {
-          console.log('Drawer Open');
-        };
-        SingularityEvent.subscribe('drawerOpen', handleDrawerOpen);
-        // 3. subscribe for close drawer event
-        const handleDrawerClose = () => {
-          console.log('Drawer close');
-        };
-        SingularityEvent.subscribe('drawerClose', handleDrawerClose);
-
-        // NOTE: unsubscribe drawer close event
-        // SingularityEvent.unsubscribe('drawerClose', handleDrawerClose);
-      });
-      /** For real time events subscribe below methods - END **/
-      window.onload = function() {
-        console.log("opening Singularity-drawer")
-        window.SingularityEvent.open();
-      };
     </script>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
 </html>
 ```
 
