@@ -7,7 +7,7 @@ This is a demo web-app to use Singularity web-sdk.
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="https://cdn.jsdelivr.net/npm/game-pay-web-sdk@1.9.0-sandbox.9/main.css" rel="stylesheet">
+    <link href="https://unpkg.com/game-pay-web-sdk@1.9.0-sandbox.10/main.css" rel="stylesheet">
     <script>
       (function (w, d, s, o, f, js, fjs) {
         w[o] =
@@ -20,7 +20,7 @@ This is a demo web-app to use Singularity web-sdk.
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "Singularity", "https://cdn.jsdelivr.net/npm/game-pay-web-sdk@1.9.0-sandbox.9/main.js");
+      })(window, document, "script", "Singularity", "https://unpkg.com/game-pay-web-sdk@1.9.0-sandbox.10/main.js");
       Singularity('init', {
         GAMEPAY_API_KEY: 2
       });
