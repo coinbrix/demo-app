@@ -1,12 +1,14 @@
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
 
+import Home from './components/Home';
+import NFTMarketplace from './components/NFTMarketplace';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/marketplace" element={<NFTMarketplace />} />
+    </Routes>
   );
 }
 
