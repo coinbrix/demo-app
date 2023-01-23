@@ -22,7 +22,10 @@ function App() {
   };
 
   useEffect(() => {
-    initialize();
+    window.document.body.addEventListener('Singularity-mounted', () => {
+      window.Singularity.init(2);
+      setLoading(false);
+    });
   }, []);
 
   if (loading) return null;
