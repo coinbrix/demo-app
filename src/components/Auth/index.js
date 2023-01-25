@@ -39,6 +39,9 @@ export default function Auth() {
   };
 
   useEffect(() => {
+    checkLogin();
+    // setTimeout(checkLogin, 3000);
+
     window.SingularityEvent.subscribe('SingularityEvent-close', onDrawerToggle);
     window.SingularityEvent.subscribe('SingularityEvent-open', onDrawerToggle);
   }, []);
