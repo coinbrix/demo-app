@@ -1,6 +1,17 @@
 import { Box, Button, Divider, Typography } from '@mui/material';
 
-export default function NFTCard() {
+export default function NFTCard({ nft }) {
+  console.log('nft inside', nft);
+  const {
+    balance,
+    contractMetadata: { symbol },
+    description,
+    media,
+    title,
+  } = nft;
+
+  const image = media[0].thumbnail;
+
   return (
     <Box
       sx={{
@@ -10,17 +21,20 @@ export default function NFTCard() {
         maxWidth: 410,
       }}
     >
-      <p>TODO: Image</p>
+      <Box textAlign="center" my={2}>
+        <img src={image} alt="" width="50%" />
+      </Box>
 
       <Box color="white">
         <Box display="flex" justifyContent="space-between" mb={1.5} mx={4}>
-          <Typography fontSize={18}>SMG - Micro Uzi</Typography>
-          <Typography fontSize={18}>12 MATIC</Typography>
+          <Typography fontSize={18}>{title}</Typography>
+          <Typography fontSize={18}>
+            {balance} {symbol}
+          </Typography>
         </Box>
 
         <Typography fontSize={14} mx={4}>
-          Its high rate of fire makes it great room cleaner but magazine is
-          empty quick and on longer ranges{' '}
+          {description}
         </Typography>
 
         <Divider sx={{ height: 4, bgcolor: 'primary.main', my: 1.5, mx: 1 }} />

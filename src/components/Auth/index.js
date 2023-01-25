@@ -9,7 +9,9 @@ export default function Auth() {
 
   const login = async () => {
     try {
-      await window.SingularityEvent.open();
+      const loggedIn = await checkLogin();
+
+      if (!loggedIn) await window.SingularityEvent.open();
     } catch (err) {
       console.error(err);
     }
@@ -19,20 +21,26 @@ export default function Auth() {
     try {
       console.log('checking login');
       const user = await window.SingularityEvent.getConnectUserInfo();
-      console.log('user', user);
-      if (user && user.metaData)
+      console.log('user data', user);
+
+      if (user && user.metaData) {
         navigate('/home', { state: { user: user.metaData } });
+        return true;
+      }
     } catch (err) {
       console.error(err);
     }
+
+    return false;
+  };
+
+  const onDrawerToggle = () => {
+    if (window.location.pathname === '/') checkLogin();
   };
 
   useEffect(() => {
-    const timer = checkLogin();
-    window.SingularityEvent.subscribe('drawerClose', () =>
-      console.log('drawer close')
-    );
-    // window.SingularityEvent.subscribe('drawerClose', checkLogin);
+    window.SingularityEvent.subscribe('SingularityEvent-close', onDrawerToggle);
+    window.SingularityEvent.subscribe('SingularityEvent-open', onDrawerToggle);
   }, []);
 
   return (

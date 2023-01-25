@@ -10,17 +10,6 @@ import theme from './utils/theme';
 function App() {
   const [loading, setLoading] = useState(true);
 
-  const initialize = async () => {
-    try {
-      console.log('tichnas', window.Singularity);
-      await window.Singularity.init(2);
-      setLoading(false);
-    } catch (err) {
-      console.error(err);
-      setTimeout(initialize, 1000);
-    }
-  };
-
   useEffect(() => {
     window.document.body.addEventListener('Singularity-mounted', () => {
       window.Singularity.init(2);
