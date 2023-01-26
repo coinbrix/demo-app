@@ -26,7 +26,7 @@
     -->
     <title>Gamepay Web SDK Wrapper</title>
     <script>
-      (function (w, d, s, o, f, js, fjs) {
+      (function (w, d, s, o, f, js, fjs, e) {
         w[o] =
           w[o] ||
           function () {
@@ -37,12 +37,16 @@
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
+        w.SingularityEnv = e;
       })(
         window,
         document,
         'script',
         'Singularity',
-        'https://unpkg.com/singularity-client-script@1.1.1/index.js'
+        'https://unpkg.com/singularity-client-script@1.1.1/index.js',
+        '',
+        '',
+        'sandbox'
       );
     </script>
   </head>
