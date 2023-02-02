@@ -1,99 +1,84 @@
-import { Box, Button, Container, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-import bgImg from '../../assets/home-bg.png';
+import bgImg from '../../assets/marketplace-bg.png';
+import MiscOperations from '../MiscOperations';
+import Navbar from '../Navbar';
+import NFTCard from '../NFTCard';
+import SignMessage from '../SignMessage';
 
 export default function Home() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const user = location.state?.user;
+  const [name, setName] = useState();
 
   useEffect(() => {
-    if (!location.state?.user) navigate('/');
-  }, [location]);
+    (async function () {
+      const userData = await window.SingularityEvent.getConnectUserInfo();
+      setName(userData?.metaData?.userMetaData?.given_name);
+      console.log('tichnas', userData?.metaData?.userMetaData);
+    })();
+  });
 
-  const visitMarketplace = () => navigate('/marketplace');
+  const data = {
+    nftResponse:
+      '{"ownedNfts":[{"contract":{"address":"0x397a7f59cc8e47854df20116ff0c0aa370371c49"},"id":{"tokenId":"0x0000000000000000000000000000000000000000000000000000000000016489","tokenMetadata":{"tokenType":"ERC721"}},"balance":"1","title":"Blockvatar #91273","description":"This is a common Blockvatar. Although common, every Blockvatar is unique and there will never be two of the same!","tokenUri":{"raw":"https://api.blockvatar.com/v1/blockvatars/91273","gateway":"https://api.blockvatar.com/v1/blockvatars/91273"},"media":[{"raw":"ipfs://bafkreifvjazoizyeb7vcontmbjctnzziviy4xtws4dokmz5hxbwxjpu3fu","gateway":"https://nft-cdn.alchemy.com/matic-mainnet/a7abb3a40db45bb8f3d6a226ece9506c","thumbnail":"https://res.cloudinary.com/alchemyapi/image/upload/thumbnail/matic-mainnet/a7abb3a40db45bb8f3d6a226ece9506c","format":"png","bytes":78778}],"metadata":{"name":"Blockvatar #91273","description":"This is a common Blockvatar. Although common, every Blockvatar is unique and there will never be two of the same!","image":"ipfs://bafkreifvjazoizyeb7vcontmbjctnzziviy4xtws4dokmz5hxbwxjpu3fu","external_url":"https://blockvatar.com/blockvatars/91273","attributes":[{"value":"Common","trait_type":"Type"},{"value":"Seagull","trait_type":"Background Color"},{"value":"Verdigris","trait_type":"Body Color"},{"value":"Sweating","trait_type":"Head"},{"value":"Fake Smile","trait_type":"Eyes"},{"value":"Ticking Lips","trait_type":"Mouth"},{"value":"Loose Denim Overall","trait_type":"Outfit"},{"value":"Axe on Head","trait_type":"Item"}]},"timeLastUpdated":"2022-12-20T18:53:59.785Z","contractMetadata":{"name":"Blockvatar","symbol":"BVTR","tokenType":"ERC721","contractDeployer":"0x1aec1f531a0b11819b83bfa8b063042a90cfee06","deployedBlockNumber":25203491,"openSea":{"lastIngestedAt":"2023-01-21T14:40:01.000Z"}}}],"totalCount":1,"blockHash":"0x5663c5de8a3d98efd99e023a2281754d64c304f76947960ad142e42459ab4c45"}',
+    status: 'SUCCESS',
+    error: null,
+  };
 
-  console.log('home user', user);
-  if (!user?.userMetaData) return;
+  const NFTs = JSON.parse(data.nftResponse).ownedNfts;
 
   return (
     <div
       style={{
         backgroundImage: `url(${bgImg})`,
-        width: '100vw',
-        height: '100vh',
+        minHeight: '100vh',
         backgroundSize: '100% 100%',
         position: 'relative',
+        backgroundAttachment: 'fixed',
       }}
     >
-      <Container
-        maxWidth="lg"
+      <Navbar />
+
+      <Typography
         sx={{
-          position: 'fixed',
-          transform: 'translate(-50%,-50%)',
-          left: '50%',
-          top: '50%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
           textAlign: 'center',
+          color: 'white',
           textTransform: 'uppercase',
+          my: 1,
         }}
       >
-        <Box
-          sx={{
-            px: 10,
-            pt: 5,
-            pb: 3,
-            bgcolor: 'rgba(19, 19, 20, 0.61)',
-            borderRadius: 6,
-          }}
+        Welcome {name}
+      </Typography>
+
+      <Box
+        display="grid"
+        gridAutoFlow="column"
+        gridTemplateRows={{
+          xs: 'repeat(6, min-content)',
+          md: 'repeat(3, min-content)',
+        }}
+        justifyContent={'space-between'}
+        justifyItems={'center'}
+        mx={[1, 10]}
+        pb={[2, 0]}
+        rowGap={4}
+      >
+        <Typography
+          sx={{ lineHeight: 1, textAlign: 'center', color: 'primary.main' }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              mb: 2,
-              color: 'primary.main',
-              fontSize: 28,
-              lineHeight: 1,
-            }}
-          >
-            welcome to demo game
-          </Typography>
-
-          <Typography
-            variant="h1"
-            sx={{
-              color: 'white',
-              fontSize: 28,
-              lineHeight: 1.5,
-            }}
-          >
-            {user.userMetaData.email}
-          </Typography>
-        </Box>
-
-        <Typography mt={4} mb={8} color="white">
-          IN THE CITY OF GANGSTERS YOU Lorem ipsum dolor sit amet, consectetur
-          <br />
-          adipiscing elit, sed do eiusmod tempor incididunt ut
+          NFT MARKETPLACE
         </Typography>
+        <NFTCard nft={NFTs[0]} />
+        <NFTCard nft={NFTs[0]} />
 
-        <Button disabled={1} sx={{ width: 605, mb: 3 }} variant="contained">
-          play game
-        </Button>
-
-        <Button
-          sx={{ width: 605 }}
-          onClick={visitMarketplace}
-          variant="contained"
+        <Typography
+          sx={{ lineHeight: 1, textAlign: 'center', color: 'primary.main' }}
         >
-          visit nft marketplace
-        </Button>
-      </Container>
+          TRY OTHER FEATURES
+        </Typography>
+        <SignMessage />
+        <MiscOperations />
+      </Box>
     </div>
   );
 }

@@ -34,16 +34,15 @@ export default function Auth() {
     return false;
   };
 
-  const onDrawerToggle = () => {
-    if (window.location.pathname === '/') checkLogin();
-  };
-
   useEffect(() => {
     checkLogin();
-    // setTimeout(checkLogin, 3000);
 
-    window.SingularityEvent.subscribe('SingularityEvent-close', onDrawerToggle);
-    window.SingularityEvent.subscribe('SingularityEvent-open', onDrawerToggle);
+    window.SingularityEvent.subscribe('SingularityEvent-logout', () =>
+      navigate('/')
+    );
+    window.SingularityEvent.subscribe('SingularityEvent-login', () =>
+      navigate('/home')
+    );
   }, []);
 
   return (
@@ -73,19 +72,19 @@ export default function Auth() {
         <Typography
           variant="h1"
           sx={{
-            py: 8,
-            px: 10,
+            py: [4, 8],
+            px: [5, 10],
             bgcolor: 'rgba(19, 19, 20, 0.61)',
             borderRadius: 6,
             color: 'primary.main',
-            fontSize: 52,
+            fontSize: [26, 52],
             lineHeight: 1,
           }}
         >
           demo game
         </Typography>
 
-        <Typography mt={4} mb={8} color="white">
+        <Typography mt={4} mb={8} color="white" fontSize={[16, 24]}>
           IN THE CITY OF GANGSTERS YOU Lorem ipsum dolor sit amet, consectetur
           <br />
           adipiscing elit, sed do eiusmod tempor incididunt ut
