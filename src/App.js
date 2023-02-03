@@ -11,9 +11,12 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
+      console.log('tichnas singularity mounted', new Date().getSeconds());
       window.Singularity.init(2);
       setLoading(false);
+      // setTimeout(() => setLoading(false), 3000);
     });
   }, []);
 
@@ -31,3 +34,8 @@ function App() {
 }
 
 export default App;
+
+/*
+demo-sandbox.s9y.gg
+
+*/
