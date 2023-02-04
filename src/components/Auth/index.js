@@ -24,7 +24,7 @@ export default function Auth() {
       console.log('user data', user);
 
       if (user && user.metaData) {
-        navigate('/home', { state: { user: user.metaData } });
+        navigate('/home');
         return true;
       }
     } catch (err) {
@@ -36,13 +36,6 @@ export default function Auth() {
 
   useEffect(() => {
     checkLogin();
-
-    window.SingularityEvent.subscribe('SingularityEvent-logout', () =>
-      navigate('/')
-    );
-    window.SingularityEvent.subscribe('SingularityEvent-login', () =>
-      navigate('/home')
-    );
   }, []);
 
   return (

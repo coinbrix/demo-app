@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import bgImg from '../../assets/marketplace-bg.png';
 import MiscOperations from '../MiscOperations';
@@ -9,12 +10,16 @@ import SignMessage from '../SignMessage';
 
 export default function Home() {
   const [name, setName] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function () {
       const userData = await window.SingularityEvent.getConnectUserInfo();
-      setName(userData?.metaData?.userMetaData?.given_name);
-      console.log('tichnas', userData?.metaData?.userMetaData);
+      const metadata = userData?.metaData?.userMetaData;
+
+      if (!metadata) return navigate('/');
+
+      setName(metadata.given_name);
     })();
   });
 

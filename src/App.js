@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Auth from './components/Auth';
 import Home from './components/Home';
@@ -9,12 +9,22 @@ import theme from './utils/theme';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
       console.log('tichnas singularity mounted', new Date().getSeconds());
       window.Singularity.init(2);
+
+      window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
+        navigate('/');
+        window.SingularityEvent.close();
+      });
+      window.SingularityEvent.subscribe('SingularityEvent-login', () => {
+        navigate('/home');
+        window.SingularityEvent.close();
+      });
       setLoading(false);
       // setTimeout(() => setLoading(false), 3000);
     });
