@@ -15,11 +15,11 @@ export default function Home() {
   useEffect(() => {
     (async function () {
       const userData = await window.SingularityEvent.getConnectUserInfo();
-      const metadata = userData?.metaData?.userMetaData;
+      const metadata = userData?.metaData;
 
       if (!metadata) return navigate('/');
 
-      setName(metadata.given_name);
+      setName(metadata?.userMetaData?.given_name);
     })();
   });
 
