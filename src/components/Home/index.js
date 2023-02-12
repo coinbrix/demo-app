@@ -7,10 +7,12 @@ import MiscOperations from '../MiscOperations';
 import Navbar from '../Navbar';
 import NFTCard from '../NFTCard';
 import SignMessage from '../SignMessage';
+import TransactionCard from '../TransactionCard';
 
 export default function Home() {
   const [name, setName] = useState();
   const navigate = useNavigate();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     (async function () {
@@ -19,6 +21,7 @@ export default function Home() {
 
       if (!metadata) return navigate('/');
 
+      setUserId(metadata.userId);
       setName(metadata?.userMetaData?.given_name);
     })();
   });
@@ -71,9 +74,9 @@ export default function Home() {
         <Typography
           sx={{ lineHeight: 1, textAlign: 'center', color: 'primary.main' }}
         >
-          NFT MARKETPLACE
+          TRY PAYMENT TRANSACTIONS
         </Typography>
-        <NFTCard nft={NFTs[0]} />
+        <TransactionCard userId={userId} />
         <NFTCard nft={NFTs[0]} />
 
         <Typography
