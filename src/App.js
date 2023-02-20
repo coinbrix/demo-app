@@ -9,6 +9,7 @@ import theme from './utils/theme';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +27,14 @@ function App() {
         navigate('/home');
         window.SingularityEvent.close();
       });
+
+      window.SingularityEvent.subscribe('SingularityEvent-open', () =>
+        setDrawerOpen(true)
+      );
+      window.SingularityEvent.subscribe('SingularityEvent-close', () =>
+        setDrawerOpen(false)
+      );
+
       setLoading(false);
       // setTimeout(() => setLoading(false), 3000);
     });
@@ -35,6 +44,22 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {drawerOpen && (
+        <div
+          onClick={() => window.SingularityEvent.close()}
+          style={{
+            height: '100vh',
+            width: '100vw',
+            backgroundColor: 'black',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            zIndex: 1,
+            opacity: 0.5,
+          }}
+        />
+      )}
+
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/home" element={<Home />} />
