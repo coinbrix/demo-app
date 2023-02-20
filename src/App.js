@@ -15,7 +15,8 @@ function App() {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
       console.log('tichnas singularity mounted', new Date().getSeconds());
-      window.Singularity.init(2);
+      const API_KEY = process.env.REACT_APP_API_KEY
+      window.Singularity.init(API_KEY);
 
       window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
         navigate('/');
