@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 
 import Auth from './components/Auth';
 import Home from './components/Home';
@@ -11,13 +11,17 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
-      console.log('tichnas singularity mounted', new Date().getSeconds());
-      const API_KEY = process.env.REACT_APP_API_KEY
-      window.Singularity.init(API_KEY);
+      const key = searchParams.get('key') || 2;
+      console.log(
+        `tichnas singularity mounted with key=${key}`,
+        new Date().getSeconds()
+      );
+      window.Singularity.init(key);
 
       window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
         navigate('/');
