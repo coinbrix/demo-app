@@ -49,15 +49,8 @@ export default function TransactionCard({ userId }) {
         'SSk49aq1/kQ1eKH7Sg+u4JsisvrycRcLopHdM6lNEMVe/p7lsSVoRiY0neFYNJkHoWVEK30bPAV2pNU2WwOJXQ==';
       const signature = Hex.stringify(hmacSHA512(JSON.stringify(body), secret));
 
-      const cerebro_prefix = 'https://cerebro.s9y';
-      let baseEndpoint = `${cerebro_prefix}-qal.com`; // default qal env
-      if (process.env.REACT_APP_ENV === 'production') {
-        baseEndpoint = `${cerebro_prefix}.gg`;
-      } else if (process.env.REACT_APP_ENV === 'sandbox') {
-        baseEndpoint = `${cerebro_prefix}-sandbox.gg`;
-      }
       const res = await axios.post(
-        `${baseEndpoint}/v1/sdk-server-protected/create_singularity_initial_txn`,
+        'https://cerebro.s9y-sandbox.gg/v1/sdk-server-protected/create_singularity_initial_txn',
         body,
         {
           headers: {
