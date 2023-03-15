@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography, TextField } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -99,9 +99,24 @@ export default function NFTCard({ nft, userId }) {
       <Box color="white">
         <Box display="flex" justifyContent="space-between" mb={1.5} mx={4}>
           <Typography fontSize={18}>{title}</Typography>
-          <Typography fontSize={18}>
-            {balance} {symbol}
-          </Typography>
+
+          <Box display="flex" alignItems="center">
+            {/* for testing */}
+            <TextField
+              type="number"
+              placeholder="Select quantity"
+              value={amount}
+              onChange={e => setAmount(e.target.value)}
+              inputProps={{
+                style: { fontSize: '14px', height: '20px', width: '50px' },
+              }}
+              sx={{ mr: 1 }}
+            />
+            <Typography fontSize={18}>
+              {/* {balance}  */}
+              {symbol}
+            </Typography>
+          </Box>
         </Box>
 
         <Typography fontSize={14} mx={4}>
