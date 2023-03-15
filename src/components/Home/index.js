@@ -18,11 +18,14 @@ export default function Home() {
     (async function () {
       const userData = await window.SingularityEvent.getConnectUserInfo();
       const metadata = userData?.metaData;
-
       if (!metadata) return navigate('/');
-
-      setUserId(metadata.userId);
-      setName(metadata?.userMetaData?.given_name);
+      const { mode } = metadata;
+      if (mode === 'social') {
+        setUserId(metadata?.userMetaData?.userId);
+        setName(metadata?.userMetaData?.given_name);
+      } else if (mode === 'web3') {
+        setUserId(metadata.userId);
+      }
     })();
   });
 
@@ -34,7 +37,6 @@ export default function Home() {
   };
 
   const NFTs = JSON.parse(data.nftResponse).ownedNfts;
-
   return (
     <div
       style={{
