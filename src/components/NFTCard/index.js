@@ -67,7 +67,7 @@ export default function NFTCard({ nft, userId }) {
         body,
         {
           headers: {
-            'x-api-key': 2,
+            'x-api-key': localStorage.getItem('singularity-key'),
             'X-api-signature': signature,
             'Content-Type': 'application/json',
           },
