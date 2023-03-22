@@ -19,6 +19,12 @@ export default function TransactionCard({ userId }) {
   const tokens = [
     { value: 66, label: 'USDC' },
     { value: 55, label: 'MATIC' },
+    { value: 25, label: 'OAS_MCHC' },
+    { value: 26, label: 'OAS_OAS' },
+    { value: 99, label: 'MCHC_MCHC' },
+    { value: 98, label: 'MCHC_OAS' },
+    { value: 101, label: 'USDC_MCHC' },
+    { value: 100, label: 'USDC_OAS' }
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
