@@ -24,7 +24,7 @@ export default function TransactionCard({ userId }) {
     { value: 99, label: 'MCHC_MCHC' },
     { value: 98, label: 'MCHC_OAS' },
     { value: 101, label: 'USDC_MCHC' },
-    { value: 100, label: 'USDC_OAS' }
+    { value: 100, label: 'USDC_OAS' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
@@ -67,7 +67,7 @@ export default function TransactionCard({ userId }) {
         body,
         {
           headers: {
-            'x-api-key': 2,
+            'x-api-key': localStorage.getItem('singularity-key'),
             'X-api-signature': signature,
             'Content-Type': 'application/json',
           },
