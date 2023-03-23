@@ -17,8 +17,10 @@ import Hex from 'crypto-js/enc-hex';
 
 export default function TransactionCard({ userId }) {
   const tokens = [
-    { value: 66, label: 'USDC' },
-    { value: 55, label: 'MATIC' },
+    { value: 66, label: 'USDC Mumbai' },
+    { value: 55, label: 'MATIC Mumbai' },
+    { value: 33, label: 'MATIC Mainnet' },
+    { value: 44, label: 'USDC Mainnet' },
     { value: 25, label: 'OAS_MCHC' },
     { value: 26, label: 'OAS_OAS' },
     { value: 99, label: 'MCHC_MCHC' },
