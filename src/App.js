@@ -17,6 +17,7 @@ function App() {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
       const key = searchParams.get('key') || 2;
+      localStorage.setItem('singularity-key', key);
       console.log(
         `tichnas singularity mounted with key=${key}`,
         new Date().getSeconds()
