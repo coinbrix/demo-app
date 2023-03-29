@@ -1,6 +1,12 @@
 import { ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useSearchParams,
+  Navigate,
+} from 'react-router-dom';
 
 import Auth from './components/Auth';
 import Home from './components/Home';
@@ -67,6 +73,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Auth />} />
+        <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/home" element={<Home />} />
         <Route path="/marketplace" element={<NFTMarketplace />} />
       </Routes>
