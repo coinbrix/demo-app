@@ -1,6 +1,12 @@
 import { ThemeProvider } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useSearchParams,
+  Navigate,
+} from 'react-router-dom';
 
 import Auth from './components/Auth';
 import Home from './components/Home';
@@ -17,6 +23,7 @@ function App() {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
       const key = searchParams.get('key') || 2;
+      localStorage.setItem('singularity-key', key);
       console.log(
         `tichnas singularity mounted with key=${key}`,
         new Date().getSeconds()
@@ -66,6 +73,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Auth />} />
+        <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/home" element={<Home />} />
         <Route path="/marketplace" element={<NFTMarketplace />} />
       </Routes>

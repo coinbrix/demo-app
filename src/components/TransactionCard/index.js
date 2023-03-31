@@ -17,8 +17,16 @@ import Hex from 'crypto-js/enc-hex';
 
 export default function TransactionCard({ userId }) {
   const tokens = [
-    { value: 66, label: 'USDC' },
-    { value: 55, label: 'MATIC' },
+    { value: 66, label: 'USDC Mumbai' },
+    { value: 55, label: 'MATIC Mumbai' },
+    { value: 33, label: 'MATIC Mainnet' },
+    { value: 44, label: 'USDC Mainnet' },
+    { value: 25, label: 'OAS_MCHC' },
+    { value: 26, label: 'OAS_OAS' },
+    { value: 99, label: 'MCHC_MCHC' },
+    { value: 98, label: 'MCHC_OAS' },
+    { value: 101, label: 'USDC_MCHC' },
+    { value: 100, label: 'USDC_OAS' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
@@ -61,7 +69,7 @@ export default function TransactionCard({ userId }) {
         body,
         {
           headers: {
-            'x-api-key': 2,
+            'x-api-key': localStorage.getItem('singularity-key'),
             'X-api-signature': signature,
             'Content-Type': 'application/json',
           },

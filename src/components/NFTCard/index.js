@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Typography, TextField } from '@mui/material';
+import { Box, Button, Divider, Typography, TextField, FormControl, InputLabel, Select, OutlinedInput, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,13 +17,20 @@ export default function NFTCard({ nft, userId }) {
   const image = media[0].thumbnail;
 
   const tokens = [
-    { value: 66, label: 'USDC' },
-    { value: 55, label: 'MATIC' },
+    { value: 66, label: 'USDC On Polygon Mumbai' },
+    { value: 55, label: 'MATIC On Polygon Mumbai' },
   ];
-  const [token, setToken] = useState('55');
-  const [amount, setAmount] = useState('0.1');
+
+  const issuingAssets = [
+    { value: 111, label: 'S9Y NFT on Polygon Mumbai' },
+    { value: 222, label: 'S9Y Token on Polygon Mumbai' },
+    { value: 333, label: 'S9Y NFT on Ethereum Sepolia' },
+    { value: 444, label: 'S9Y Token on Ethereum Sepolia' },
+  ];
+  const [token, setToken] = useState('');
+  const [amount, setAmount] = useState('');
   const [assetQuantity, setAssetQuantity] = useState('1');
-  const [assetId, setAssetId] = useState('111');
+  const [assetId, setAssetId] = useState('');
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -67,7 +74,7 @@ export default function NFTCard({ nft, userId }) {
         body,
         {
           headers: {
-            'x-api-key': 2,
+            'x-api-key': localStorage.getItem('singularity-key'),
             'X-api-signature': signature,
             'Content-Type': 'application/json',
           },
@@ -89,6 +96,7 @@ export default function NFTCard({ nft, userId }) {
         borderColor: 'primary.main',
         bgcolor: '#EBA82699',
         width: ['100%', 410],
+        p:3,
         boxSizing: 'border-box',
       }}
     >
@@ -96,28 +104,56 @@ export default function NFTCard({ nft, userId }) {
         <img src={s9yNft} alt="" height="100px" />
       </Box>
 
-      <Box color="white">
-        <Box display="flex" justifyContent="space-between" mb={1.5} mx={4}>
-          <Typography fontSize={18}>{title}</Typography>
+      <FormControl fullWidth>
+          {!assetId && (
+            <InputLabel style={{ fontSize: '20px' }}>Requested Exchange Asset</InputLabel>
+          )}
+          <Select
+            value={assetId}
+            onChange={e => setAssetId(e.target.value)}
+            input={<OutlinedInput style={{ fontSize: '20px' }} />}
+          >
+            {issuingAssets.map(({ value, label }) => (
+              <MenuItem key={value} value={value} style={{ fontSize: '20px' }}>
+                {label}
+              </MenuItem>
+            ))}
+          </Select>
+      </FormControl>
 
-          <Box display="flex" alignItems="center">
-            {/* for testing */}
-            <TextField
-              type="number"
-              placeholder="Select quantity"
-              value={amount}
-              onChange={e => setAmount(e.target.value)}
-              inputProps={{
-                style: { fontSize: '14px', height: '20px', width: '50px' },
-              }}
-              sx={{ mr: 1 }}
-            />
-            <Typography fontSize={18}>
-              {/* {balance}  */}
-              {symbol}
-            </Typography>
-          </Box>
-        </Box>
+
+      {/* <Typography fontSize={18}>{title}</Typography> */}
+
+
+
+      <FormControl fullWidth sx={{ mt: 1 }}>
+            {!token && (
+              <InputLabel style={{ fontSize: '20px' }}>Requested Payment Token</InputLabel>
+            )}
+            <Select
+              value={token}
+              onChange={e => setToken(e.target.value)}
+              input={<OutlinedInput style={{ fontSize: '20px' }} />}
+            >
+              {tokens.map(({ value, label }) => (
+                <MenuItem key={value} value={value} style={{ fontSize: '20px' }}>
+                  {label}
+                </MenuItem>
+              ))}
+            </Select>
+      </FormControl>
+    
+        {/* for testing */}
+      <TextField
+        fullWidth
+        type="number"
+        placeholder="Select Payment Amount"
+        value={amount}
+        onChange={e => setAmount(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
 
         <Typography fontSize={14} mx={4}>
           {description}
@@ -155,7 +191,7 @@ export default function NFTCard({ nft, userId }) {
             {loading ? 'Processing...' : 'buy now'}
           </Button>
         </Box>
-      </Box>
+
     </Box>
   );
 }
