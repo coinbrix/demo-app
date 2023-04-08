@@ -46,6 +46,29 @@ function App() {
         setDrawerOpen(false)
       );
 
+      window.SingularityEvent.subscribe('SingularityEvent-close', () =>
+        setDrawerOpen(false)
+      );
+
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionApproval',
+        data => {
+          console.log('Txn approved', JSON.parse(data));
+        }
+      );
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionSuccess',
+        data => {
+          console.log('Txn Successfull', JSON.parse(data));
+        }
+      );
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionFailure',
+        data => {
+          console.log('Txn failed', JSON.parse(data));
+        }
+      );
+
       setLoading(false);
       // setTimeout(() => setLoading(false), 3000);
     });
