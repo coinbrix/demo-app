@@ -34,21 +34,20 @@ function App() {
         navigate('/');
         window.SingularityEvent.close();
       });
-      window.SingularityEvent.subscribe('SingularityEvent-login', () => {
+      window.SingularityEvent.subscribe('SingularityEvent-login', data => {
+        console.log('login data --->', data);
         navigate('/home');
-        window.SingularityEvent.close();
+        // window.SingularityEvent.close();
       });
 
       window.SingularityEvent.subscribe('SingularityEvent-open', () =>
         setDrawerOpen(true)
       );
-      window.SingularityEvent.subscribe('SingularityEvent-close', () =>
-        setDrawerOpen(false)
-      );
 
-      window.SingularityEvent.subscribe('SingularityEvent-close', () =>
-        setDrawerOpen(false)
-      );
+      window.SingularityEvent.subscribe('SingularityEvent-close', () => {
+        console.log('subscribe close drawer ');
+        setDrawerOpen(false);
+      });
 
       window.SingularityEvent.subscribe(
         'SingularityEvent-onTransactionApproval',
