@@ -56,12 +56,6 @@ export default function TransactionCard({
           clientRequestedAssetQuantity: amount,
         },
       };
-      if (userId) {
-        body = {
-          ...body,
-          userId,
-        };
-      }
       if (gamerAddress) {
         body = {
           ...body,
@@ -79,7 +73,6 @@ export default function TransactionCard({
       const requestString = JSON.stringify(body);
       const signature = Hex.stringify(hmacSHA512(requestString, secret));
       window.SingularityEvent.transactionFlow(requestString, signature, userId);
-      debugger;
       if (gamerAddress && handleBuyAsset) {
         handleBuyAsset();
       }
@@ -158,7 +151,7 @@ export default function TransactionCard({
           mt: 1,
         }}
         variant="contained"
-        disabled={!amount || !token || !gamerAddress || loading}
+        disabled={!amount || !token || loading}
         onClick={initiateTransaction}
       >
         {loading ? 'Loading' : 'Request'}
