@@ -31,6 +31,9 @@ export default function TransactionCard({
     { value: 98, label: 'MCHC_OAS' },
     { value: 101, label: 'USDC_MCHC' },
     { value: 100, label: 'USDC_OAS' },
+    { value: 86, label: 'RPG BSC Mainnet' },
+    { value: 96, label: 'RPG BSC Testnet' },
+    { value: 94, label: 'BUSD BSC Testnet' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
