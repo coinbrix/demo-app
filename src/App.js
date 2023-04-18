@@ -34,16 +34,38 @@ function App() {
         navigate('/');
         window.SingularityEvent.close();
       });
-      window.SingularityEvent.subscribe('SingularityEvent-login', () => {
+      window.SingularityEvent.subscribe('SingularityEvent-login', data => {
+        console.log('login data --->', data);
         navigate('/home');
-        window.SingularityEvent.close();
+        // window.SingularityEvent.close();
       });
 
       window.SingularityEvent.subscribe('SingularityEvent-open', () =>
         setDrawerOpen(true)
       );
-      window.SingularityEvent.subscribe('SingularityEvent-close', () =>
-        setDrawerOpen(false)
+
+      window.SingularityEvent.subscribe('SingularityEvent-close', () => {
+        console.log('subscribe close drawer ');
+        setDrawerOpen(false);
+      });
+
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionApproval',
+        data => {
+          console.log('Txn approved', JSON.parse(data));
+        }
+      );
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionSuccess',
+        data => {
+          console.log('Txn Successfull', JSON.parse(data));
+        }
+      );
+      window.SingularityEvent.subscribe(
+        'SingularityEvent-onTransactionFailure',
+        data => {
+          console.log('Txn failed', JSON.parse(data));
+        }
       );
 
       setLoading(false);

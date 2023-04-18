@@ -15,7 +15,11 @@ import { v4 as uuidv4 } from 'uuid';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import Hex from 'crypto-js/enc-hex';
 
-export default function TransactionCard({ userId }) {
+export default function TransactionCard({
+  userId,
+  showUserAddressField,
+  handleBuyAsset,
+}) {
   const tokens = [
     { value: 66, label: 'USDC Mumbai' },
     { value: 55, label: 'MATIC Mumbai' },
@@ -27,11 +31,15 @@ export default function TransactionCard({ userId }) {
     { value: 98, label: 'MCHC_OAS' },
     { value: 101, label: 'USDC_MCHC' },
     { value: 100, label: 'USDC_OAS' },
+    { value: 86, label: 'RPG BSC Mainnet' },
+    { value: 96, label: 'RPG BSC Testnet' },
+    { value: 94, label: 'BUSD BSC Testnet' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
   const [loading, setLoading] = useState(false);
+  const [gamerAddress, setGamerAddress] = useState('');
 
   const initiateTransaction = async () => {
     setLoading(true);
@@ -39,9 +47,8 @@ export default function TransactionCard({ userId }) {
     try {
       const clientReferenceId = uuidv4();
 
-      const body = {
+      let body = {
         clientReferenceId,
-        userId,
         singularityTransactionType: 'RECEIVE',
         transactionLabel: reason,
         transactionDescription: 'Description',
@@ -52,31 +59,26 @@ export default function TransactionCard({ userId }) {
           clientRequestedAssetQuantity: amount,
         },
       };
+      if (gamerAddress) {
+        body = {
+          ...body,
+          clientReceiveObject: {
+            ...body.clientReceiveObject,
+            address: gamerAddress,
+          },
+        };
+      }
 
       const secret =
         'SSk49aq1/kQ1eKH7Sg+u4JsisvrycRcLopHdM6lNEMVe/p7lsSVoRiY0neFYNJkHoWVEK30bPAV2pNU2WwOJXQ==';
-      const signature = Hex.stringify(hmacSHA512(JSON.stringify(body), secret));
 
-      const cerebro_prefix = 'https://cerebro.s9y';
-      let baseEndpoint = `${cerebro_prefix}-qal.com`; // default qal env
-      if (process.env.REACT_APP_ENV === 'production') {
-        baseEndpoint = `${cerebro_prefix}.gg`;
-      } else if (process.env.REACT_APP_ENV === 'sandbox') {
-        baseEndpoint = `${cerebro_prefix}-sandbox.gg`;
+      console.log('Body to generate signature ---->', body);
+      const requestString = JSON.stringify(body);
+      const signature = Hex.stringify(hmacSHA512(requestString, secret));
+      window.SingularityEvent.transactionFlow(requestString, signature, userId);
+      if (gamerAddress && handleBuyAsset) {
+        handleBuyAsset();
       }
-      const res = await axios.post(
-        `${baseEndpoint}/v1/sdk-server-protected/create_singularity_initial_txn`,
-        body,
-        {
-          headers: {
-            'x-api-key': localStorage.getItem('singularity-key'),
-            'X-api-signature': signature,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      window.SingularityEvent.transactionFlow('INIT_COLLECT_PAYMENT', res.data);
     } catch (err) {
       window.alert('Some error occured');
       console.error(err);
@@ -135,6 +137,16 @@ export default function TransactionCard({ userId }) {
         sx={{ mt: 1 }}
       />
 
+      {showUserAddressField ? (
+        <TextField
+          placeholder="Enter address"
+          value={gamerAddress}
+          onChange={e => setGamerAddress(e.target.value)}
+          inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+          sx={{ mt: 1 }}
+        />
+      ) : null}
+
       <Button
         sx={{
           fontSize: 20,
@@ -142,7 +154,7 @@ export default function TransactionCard({ userId }) {
           mt: 1,
         }}
         variant="contained"
-        disabled={!amount || !token || !reason || loading}
+        disabled={!amount || !token || loading}
         onClick={initiateTransaction}
       >
         {loading ? 'Loading' : 'Request'}
