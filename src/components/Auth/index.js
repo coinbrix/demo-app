@@ -1,59 +1,11 @@
 import { Button, Container, Typography, Box, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Auth0Lock from 'auth0-lock';
-
 import bgImg from '../../assets/auth-bg.png';
 import TransactionCard from '../TransactionCard';
-
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC1UdTj35lNKnuXR23FmoNkJQcRikumUUE",
-  authDomain: "web3-auth-test.firebaseapp.com",
-  projectId: "web3-auth-test",
-  storageBucket: "web3-auth-test.appspot.com",
-  messagingSenderId: "251658538692",
-  appId: "1:251658538692:web:d5b8f1ff91a7f0a9b04391",
-  measurementId: "G-NKL9CNNEST"
-};
-
-
-const DEMO_AUTH_LOCK = new Auth0Lock("RT5p8TX5jby2jyJa6FEQOBslAaVVBsVf", "neobrix-gamepay.us.auth0.com", {
-  container: "gamepay-auth0-container-demo",
-  allowedConnections: ['google-oauth2'],
-  auth: {
-    redirect: false,
-    responseType: 'token id_token'
-  },
-  theme: {
-    logo: "",
-    authButtons: {
-      facebook: {
-        primaryColor: '#2E2E2E'
-      },
-      // 'google-oauth2': {
-      //   primaryColor: '#2E2E2E',
-      //   foregroundColor: '#FFFFFF'
-      // }
-    }
-  },
-  popupOptions: { width: 400, height: 400, left: 1200, top: 200 },
-  languageDictionary: {
-    title: ""
-  },
-  forceAutoHeight: true
-});
 export default function Auth() {
   const [showBuyAssetForm, toggleShowBuyAssetForm] = useState(false);
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState("amit@neobrix.io")
-  const [password, setPassword] = useState("12345678")
-
   const login = async () => {
     try {
       const loggedIn = await checkLogin();
@@ -87,47 +39,8 @@ export default function Auth() {
 
   useEffect(() => {
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     checkLogin();
-    DEMO_AUTH_LOCK.show();
-    DEMO_AUTH_LOCK.on("authenticated", function (result) {
-      // window.SingularityEvent.open();
-      window.SingularityEvent.customAuth('AUTH0', {
-        idToken: result.idToken,
-        accessToken: result.accessToken
-      })
-    });
   }, []);
-
-  const handleFirebaseLogin = () => {
-    const auth = getAuth();
-    // signInWithEmailAndPassword(auth, "amitsharmamail101@gmail.com", "12345678")
-    // createUserWithEmailAndPassword(auth, "amit@neobrix.io", "12345678")
-    signInWithEmailAndPassword(auth, email, password)
-      // signInWithEmailAndPassword(auth, "virus.sharma79@gmail.com", "12345678")
-      .then(async (userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log('firebase login user', user)
-        const accessToken = user.accessToken
-        console.log('accessToken', accessToken)
-        const idToken1 = await user.getIdToken(true)
-        console.log('idToken1', idToken1)
-
-        window.SingularityEvent.customAuth('FIREBASE', {
-          idToken: idToken1,
-          accessToken: accessToken
-        })
-      })
-      .catch((error) => {
-        console.log('firebase login error', error)
-
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
-  }
 
   return (
     <div
@@ -186,52 +99,6 @@ export default function Auth() {
         >
           Buy Asset
         </Button>
-
-        <div id="auth-container-demo">
-          <div id="gamepay-auth0-container-demo"></div>
-        </div>
-
-        <div>
-          <Container
-            sx={{
-              // position: 'fixed',
-              // top: '20%',
-              zIndex: 2,
-              background: 'white',
-              width: 'fit-content',
-            }}
-          >
-          <TextField
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            inputProps={{ style: { fontSize: '20px', height: '100%' } }}
-            sx={{ mt: 1 }}
-          />
-
-            <TextField
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              inputProps={{ style: { fontSize: '20px', height: '100%' } }}
-              sx={{ mt: 1 }}
-            />
-
-            <Button
-              sx={{
-                fontSize: 20,
-                lineHeight: '23px',
-                mt: 1,
-              }}
-              variant="contained"
-              // disabled={!amount || !token || loading}
-              onClick={handleFirebaseLogin}
-            >Firebase Login </Button>
-
-          </Container>
-        {/*  <input/>Password<input/>*/}
-        {/*  <button>Submit</button>*/}
-        </div>
 
         {showBuyAssetForm ? (
           <Container
