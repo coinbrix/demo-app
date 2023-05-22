@@ -22,6 +22,7 @@ export default function NFTCard({ nft, userId }) {
   ];
 
   const issuingAssets = [
+    { value: 103, label: 'USDC on Conduit Appchain' },
     { value: 111, label: 'S9Y NFT on Polygon Mumbai' },
     { value: 222, label: 'S9Y Token on Polygon Mumbai' },
     { value: 333, label: 'S9Y NFT on Ethereum Sepolia' },
