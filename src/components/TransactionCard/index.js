@@ -21,7 +21,7 @@ export default function TransactionCard({
   handleBuyAsset,
 }) {
   const tokens = [
-    { value: 66, label: 'USDC Mumbai' },
+    { value: 66, label: 'USDC MCH Verse' },
     { value: 55, label: 'MATIC Mumbai' },
     { value: 33, label: 'MATIC Mainnet' },
     { value: 44, label: 'USDC Mainnet' },
@@ -29,7 +29,7 @@ export default function TransactionCard({
     { value: 26, label: 'OAS_OAS' },
     { value: 99, label: 'MCHC_MCHC' },
     { value: 98, label: 'MCHC_OAS' },
-    { value: 101, label: 'USDC_MCHC' },
+    { value: 25, label: 'USDC MCH Verse' },
     { value: 100, label: 'USDC_OAS' },
     { value: 86, label: 'RPG BSC Mainnet' },
     { value: 96, label: 'RPG BSC Testnet' },
