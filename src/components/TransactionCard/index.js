@@ -34,6 +34,10 @@ export default function TransactionCard({
     { value: 86, label: 'RPG BSC Mainnet' },
     { value: 96, label: 'RPG BSC Testnet' },
     { value: 94, label: 'BUSD BSC Testnet' },
+    { value: 103, label: 'ETH on Goerli' },
+    { value: 104, label: 'USDC on Goerli' },
+    { value: 105, label: 'ETH on Optimism Testnet' },
+    { value: 106, label: 'USDC on Optimism Testnet' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
