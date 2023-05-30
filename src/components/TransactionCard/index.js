@@ -34,6 +34,7 @@ export default function TransactionCard({
     { value: 86, label: 'RPG BSC Mainnet' },
     { value: 96, label: 'RPG BSC Testnet' },
     { value: 94, label: 'BUSD BSC Testnet' },
+    { value: 97, label: 'BNB' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');

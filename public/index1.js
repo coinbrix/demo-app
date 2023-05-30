@@ -1,3 +1,5 @@
+// <script src="web3-onboard.bundle.js"></script>
+
 class SingularityBL {
 
   constructor() {
@@ -6,15 +8,56 @@ class SingularityBL {
 
   setExternalScripts = () => {
     createScript(document, 'script', 'ethers-sdkjs', 'https://cdn.ethers.io/scripts/ethers-v4.min.js');
-    // createScript(document, 'script', 'web3-onboard-core', 'https://unpkg.com/web3-onboard-core@2.3.1/dist/index.js');
-    // createScript(document, 'script', 'web3-onboard-core', 'https://cdn.jsdelivr.net/npm/@web3-onboard/core@2.19.2/dist/index.min.js');
-    createScript(document, 'script', 'web3-onboard-core', 'https://cdn.jsdelivr.net/npm/web3-onboard-core@2.3.1/dist/index.js');
-    createScript(document, 'script', 'web3-onboard-common', 'https://cdn.jsdelivr.net/npm/@web3-onboard/common@2.3.3/dist/index.min.js');
-    createScript(document, 'script', 'web3-onboard-injected-wallets', 'https://cdn.jsdelivr.net/npm/@web3-onboard/injected-wallets@2.9.0/dist/index.min.js');
-    createScript(document, 'script', 'web3-onboard-wallet-connect', 'https://cdn.jsdelivr.net/npm/@web3-onboard/walletconnect@2.3.8/dist/index.min.js');
-    createScript(document, 'script', 'web3-onboard-react', 'https://cdn.jsdelivr.net/npm/@web3-onboard/react@2.8.4/dist/index.min.js');
-    createScript(document, 'script', 'web3-onboard-coinbase', 'https://cdn.jsdelivr.net/npm/@web3-onboard/coinbase@2.2.4/dist/index.min.js');
-    // createScript(document, 'script', 'redux-sdkjs', 'https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js');
+    createScript(document, 'script', 'web3onboardbundle', 'web3onboard/web3-onboard.bundle.js');
+    createScript(document, 'script', 'web3onboardreact', 'web3onboardreact/web3-onboard-react.bundle.js');
+    createScript(document, 'script', 'web3onboardcoinbase', 'web3onboardcoinbase/web3-onboard-coinbase.bundle.js');
+    createScript(document, 'script', 'web3onboardinjectedwallets', 'web3onboardinjectedwallets/web3-onboard-injected-wallets.bundle.js');
+    createScript(document, 'script', 'web3onboardwalletconnect', 'web3onboardwalletconnect/web3-onboard-wallet-connect.bundle.js');
+
+    // createScript(document, 'script', 'react-dom', 'https://unpkg.com/react-dom@18/umd/react-dom.development.js');
+    // createScript(document, 'script', 'react', 'https://unpkg.com/react@18.2.0/umd/react.development.js');
+
+    createScript(document, 'script', 'react-dom', 'https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js');
+    createScript(document, 'script', 'react', 'https://unpkg.com/react@17.0.2/umd/react.development.js');
+
+    createScript(document, 'script', 'component', 'component.js');
+
+    // setTimeout(() => {
+    //   const { Onboard, injectedModule } = web3Onboard;
+    //   const { walletConnectModule  } = web3OnboardWalletConnect
+    //
+    //   const { useState, useEffect, useCallback} = React;
+    //
+    //
+    //   const walletConnectSdk = walletConnectModule({
+    //     qrcodeModalOptions: {
+    //       mobileLinks: ['metamask', 'argent', 'trust']
+    //     },
+    //     connectFirstChainId: true
+    //   });
+    //
+    //
+    //   const injected = injectedModule()
+    //
+    //   const onboard = Onboard({
+    //     theme: 'dark',
+    //     wallets: [injected, walletConnectSdk],
+    //     chains: [
+    //       {
+    //         id: '0x13881',
+    //         token: 'MATIC',
+    //         label: 'Polygon Mumbai',
+    //         rpcUrl: `https://skilled-dawn-research.matic-testnet.quiknode.pro/ad667afe0dad9b979ffb5053038c93cf1ce4b066/`
+    //       }
+    //     ]
+    //   })
+    //
+    //   console.log('onboard', onboard)
+    //
+    //   onboard.connectWallet().then((wallets) => {
+    //     console.log(wallets)
+    //   })
+    // }, 7000)
   }
 
   updateLocalStore = (action) => {

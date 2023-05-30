@@ -1,0 +1,1 @@
+(self.webpackChunkweb3OnboardWalletConnect=self.webpackChunkweb3OnboardWalletConnect||[]).push([[563],{6563:()=>{}}]);

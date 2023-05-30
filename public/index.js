@@ -25,6 +25,8 @@ if (env === PRODUCTION_ENV) {
   host = "https://app.s9y-sandbox.gg";
 }
 
+host = 'http://localhost:9080'
+
 let iframeObj;
 let isIframeLoaded = false;
 let singularityBlInstance = {};
@@ -58,16 +60,21 @@ const createScript = (d, s, id, src, callback = () => {}) => {
   js.src = src;
   fjs.parentNode.insertBefore(js, fjs);
 }
-createScript(document, 'script', 'singularity-bl-sdkjs', 'index1.js', () => {
-  singularityBlInstance = new SingularityBL();
-});
-/**
- * createScript(document, 'script', 'singularity-bl-sdkjs', 'http://localhost:9001/index.js', () => {
+
+  createScript(document, 'script', 'singularity-bl-sdkjs', 'index1.js', () => {
     singularityBlInstance = new SingularityBL();
   });
- */
 
 /** EXTERNAL SCRIPT Injection ENDS */
+
+// const obj =  document.createElement("object");
+// obj.data = 'http://localhost:9081'
+// obj.style.visibility='hidden'
+// obj.style.position='fixed'
+// obj.style.width='1px'
+// obj.style.height='1px'
+// document.body.appendChild(obj);
+// console.log('obj', obj)
 
 window.onload = () => {
   const fetchMetaData = async (apikey) => {
