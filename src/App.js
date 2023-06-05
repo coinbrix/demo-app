@@ -22,12 +22,23 @@ function App() {
   useEffect(() => {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
-      const key = searchParams.get('key') || 2;
+      let key;
+      if (searchParams.get('key')) {
+        console.log('using key through url');
+        key = searchParams.get('key');
+      } else if (localStorage.getItem('singularity-key')) {
+        console.log('using key through localStorage');
+        key = localStorage.getItem('singularity-key');
+      } else {
+        console.log('using default key value');
+        key = 2; // default key
+      }
       localStorage.setItem('singularity-key', key);
       console.log(
         `tichnas singularity mounted with key=${key}`,
         new Date().getSeconds()
       );
+
       window.Singularity.init(key);
 
       window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
