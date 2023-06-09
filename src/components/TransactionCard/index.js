@@ -38,7 +38,7 @@ export default function TransactionCard({
     { value: 104, label: 'USDC on Goerli' },
     { value: 105, label: 'ETH on Optimism Testnet' },
     { value: 106, label: 'USDC on Optimism Testnet' },
-    { value: 201, label: 'USDC on Optimism Testnet' },
+    { value: 201, label: 'ETH on Caldera Goerli Appchain' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
