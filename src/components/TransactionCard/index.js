@@ -39,6 +39,7 @@ export default function TransactionCard({
     { value: 105, label: 'ETH on Optimism Testnet' },
     { value: 106, label: 'USDC on Optimism Testnet' },
     { value: 201, label: 'ETH on Caldera Goerli Appchain' },
+    { value: 202, label: 'USDC on Caldera Goerli Appchain' },
   ];
 
   const receivingAddressTypes = [
