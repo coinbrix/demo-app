@@ -10,7 +10,7 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import Hex from 'crypto-js/enc-hex';
@@ -40,11 +40,46 @@ export default function TransactionCard({
     { value: 106, label: 'USDC on Optimism Testnet' },
     { value: 201, label: 'ETH on Caldera Goerli Appchain' },
   ];
+
+  const receivingAddressTypes = [
+    {
+      value: 'user',
+      label: 'User',
+    },
+    {
+      value: 'merchant',
+      label: 'Merchant',
+    },
+  ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
   const [loading, setLoading] = useState(false);
   const [gamerAddress, setGamerAddress] = useState('');
+  const [receivingAddressType, setReceivingAddressType] = useState('user');
+
+  useEffect(() => {
+    if (receivingAddressType === 'user') {
+      handleAddressField();
+    } else {
+      setGamerAddress('');
+    }
+    return () => {
+      setGamerAddress('');
+    };
+  }, [receivingAddressType]);
+
+  const handleAddressField = async () => {
+    const userInfo = await window.SingularityEvent.getConnectUserInfo();
+    const userAvailabelAddresses =
+      userInfo?.metaData?.wallet?.accounts?.evmPublicAddress || [];
+    const userSelectedAddress = userAvailabelAddresses.length
+      ? userAvailabelAddresses[0]?.publicAddress || ''
+      : '';
+    if (userSelectedAddress) {
+      setGamerAddress(userSelectedAddress);
+    }
+  };
 
   const initiateTransaction = async () => {
     setLoading(true);
@@ -141,7 +176,8 @@ export default function TransactionCard({
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
-
+      {/* showUserAddressField prop is passed only in case of non-login form, 
+        where we have to explicitly take user address */}
       {showUserAddressField ? (
         <TextField
           placeholder="Enter address"
@@ -150,7 +186,24 @@ export default function TransactionCard({
           inputProps={{ style: { fontSize: '20px', height: '100%' } }}
           sx={{ mt: 1 }}
         />
-      ) : null}
+      ) : (
+        <FormControl fullWidth sx={{ mt: 1 }}>
+          <InputLabel style={{ fontSize: '20px' }}>Send To</InputLabel>
+
+          <Select
+            placeholder="Send to"
+            value={receivingAddressType}
+            onChange={e => setReceivingAddressType(e.target.value)}
+            input={<OutlinedInput style={{ fontSize: '20px' }} />}
+          >
+            {receivingAddressTypes.map(({ value, label }) => (
+              <MenuItem key={value} value={value} style={{ fontSize: '20px' }}>
+                {label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
 
       <Button
         sx={{
