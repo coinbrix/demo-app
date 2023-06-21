@@ -23,10 +23,7 @@ export default function TransactionCard({
   const tokens = [
     { value: 800011, label: 'USDC Mumbai' },
     { value: 800010, label: 'MATIC Mumbai' },
-    { value: 1370, label: 'MATIC Mainnet' },
-    { value: 1371, label: 'USDC Mainnet' },
-    { value: 86, label: 'RPG BSC Mainnet' },
-    { value: 96, label: 'RPG BSC Testnet' },
+    { value: 970, label: 'BNB BSC Testnet' },
     { value: 973, label: 'BUSD BSC Testnet' },
     { value: 50, label: 'ETH on Goerli' },
     { value: 51, label: 'USDC on Goerli' },
@@ -36,12 +33,12 @@ export default function TransactionCard({
     { value: 99811, label: 'USDC on Caldera Goerli Appchain' },
     { value: 2220, label: 'ETH on Conduit Goerli Appchain' },
     { value: 2221, label: 'USDC on Conduit Goerli Appchain' },
-    { value: 25, label: 'OAS_MCHC' },
-    { value: 26, label: 'OAS_OAS' },
-    { value: 99, label: 'MCHC_MCHC' },
-    { value: 98, label: 'MCHC_OAS' },
-    { value: 101, label: 'USDC_MCHC' },
-    { value: 100, label: 'USDC_OAS' }
+    { value: 93720, label: 'OAS on Oasys Testnet' },
+    { value: 93721, label: 'USDC on Oasys Testnet' },
+    { value: 1370, label: 'MATIC Mainnet' },
+    { value: 1371, label: 'USDC Mainnet' },
+    { value: 86, label: 'RPG BSC Mainnet' },
+    { value: 96, label: 'RPG BSC Testnet' },
   ];
 
   const receivingAddressTypes = [
