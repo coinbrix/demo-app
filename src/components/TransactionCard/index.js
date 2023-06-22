@@ -35,6 +35,7 @@ export default function TransactionCard({
     { value: 2221, label: 'USDC on Conduit Goerli Appchain' },
     { value: 93720, label: 'OAS on Oasys Testnet' },
     { value: 93721, label: 'USDC on Oasys Testnet' },
+    { value: 29548, label: 'OAS on MCH Verse Mainnet' },
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 86, label: 'RPG BSC Mainnet' },
