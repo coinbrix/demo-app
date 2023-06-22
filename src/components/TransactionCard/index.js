@@ -37,6 +37,8 @@ export default function TransactionCard({
     { value: 93721, label: 'USDC on Oasys Testnet' },
     { value: 295480, label: 'OAS on MCH Verse Mainnet' },
     { value: 295481, label: 'USDC on MCH Verse Mainnet' },
+    { value: 201970, label: 'OAS on SAND Verse Mainnet' },
+    { value: 201971, label: 'USDC on SAND Verse Mainnet' },
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 86, label: 'RPG BSC Mainnet' },
