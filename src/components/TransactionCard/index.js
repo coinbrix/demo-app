@@ -10,7 +10,7 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import Hex from 'crypto-js/enc-hex';
@@ -21,25 +21,69 @@ export default function TransactionCard({
   handleBuyAsset,
 }) {
   const tokens = [
-    { value: 55, label: 'MATIC Mumbai' },
-    { value: 33, label: 'MATIC Mainnet' },
-    { value: 44, label: 'USDC Mainnet' },
-    { value: 25, label: 'OAS_MCHC' },
-    { value: 26, label: 'OAS_OAS' },
-    { value: 99, label: 'MCHC_MCHC' },
-    { value: 98, label: 'MCHC_OAS' },
-    { value: 66, label: 'USDC MCH Verse' },
-    { value: 25, label: 'USDC MCH Verse' },
-    { value: 100, label: 'USDC_OAS' },
+    { value: 800011, label: 'USDC Mumbai' },
+    { value: 800010, label: 'MATIC Mumbai' },
+    { value: 970, label: 'BNB BSC Testnet' },
+    { value: 973, label: 'BUSD BSC Testnet' },
+    { value: 50, label: 'ETH on Goerli' },
+    { value: 51, label: 'USDC on Goerli' },
+    { value: 4200, label: 'ETH on Optimism Testnet' },
+    { value: 4201, label: 'USDC on Optimism Testnet' },
+    { value: 99810, label: 'ETH on Caldera Goerli Appchain' },
+    { value: 99811, label: 'USDC on Caldera Goerli Appchain' },
+    { value: 2220, label: 'ETH on Conduit Goerli Appchain' },
+    { value: 2221, label: 'USDC on Conduit Goerli Appchain' },
+    { value: 93720, label: 'OAS on Oasys Testnet' },
+    { value: 93721, label: 'USDC on Oasys Testnet' },
+    { value: 295480, label: 'OAS on MCH Verse Mainnet' },
+    { value: 295481, label: 'USDC on MCH Verse Mainnet' },
+    { value: 201970, label: 'OAS on SAND Verse Mainnet' },
+    { value: 201971, label: 'USDC on SAND Verse Mainnet' },
+    { value: 1370, label: 'MATIC Mainnet' },
+    { value: 1371, label: 'USDC Mainnet' },
     { value: 86, label: 'RPG BSC Mainnet' },
     { value: 96, label: 'RPG BSC Testnet' },
-    { value: 94, label: 'BUSD BSC Testnet' },
+  ];
+
+  const receivingAddressTypes = [
+    {
+      value: 'user',
+      label: 'User',
+    },
+    {
+      value: 'merchant',
+      label: 'Merchant',
+    },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
   const [loading, setLoading] = useState(false);
   const [gamerAddress, setGamerAddress] = useState('');
+  const [receivingAddressType, setReceivingAddressType] = useState('user');
+
+  useEffect(() => {
+    if (receivingAddressType === 'user') {
+      handleAddressField();
+    } else {
+      setGamerAddress('');
+    }
+    return () => {
+      setGamerAddress('');
+    };
+  }, [receivingAddressType]);
+
+  const handleAddressField = async () => {
+    const userInfo = await window.SingularityEvent.getConnectUserInfo();
+    const userAvailabelAddresses =
+      userInfo?.metaData?.wallet?.accounts?.evmPublicAddress || [];
+    const userSelectedAddress = userAvailabelAddresses.length
+      ? userAvailabelAddresses[0]?.publicAddress || ''
+      : '';
+    if (userSelectedAddress) {
+      setGamerAddress(userSelectedAddress);
+    }
+  };
 
   const initiateTransaction = async () => {
     setLoading(true);
@@ -136,7 +180,8 @@ export default function TransactionCard({
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
-
+      {/* showUserAddressField prop is passed only in case of non-login form, 
+        where we have to explicitly take user address */}
       {showUserAddressField ? (
         <TextField
           placeholder="Enter address"
@@ -145,7 +190,24 @@ export default function TransactionCard({
           inputProps={{ style: { fontSize: '20px', height: '100%' } }}
           sx={{ mt: 1 }}
         />
-      ) : null}
+      ) : (
+        <FormControl fullWidth sx={{ mt: 1 }}>
+          <InputLabel style={{ fontSize: '20px' }}>Send To</InputLabel>
+
+          <Select
+            placeholder="Send to"
+            value={receivingAddressType}
+            onChange={e => setReceivingAddressType(e.target.value)}
+            input={<OutlinedInput style={{ fontSize: '20px' }} />}
+          >
+            {receivingAddressTypes.map(({ value, label }) => (
+              <MenuItem key={value} value={value} style={{ fontSize: '20px' }}>
+                {label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
 
       <Button
         sx={{
