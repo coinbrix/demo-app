@@ -25,6 +25,8 @@ export default function TransactionCard({
     { value: 800010, label: 'MATIC Mumbai' },
     { value: 970, label: 'BNB BSC Testnet' },
     { value: 973, label: 'BUSD BSC Testnet' },
+    { value: 87, label: 'BNB BSC Mainnet' },
+    { value: 84, label: 'BUSD BSC Mainnet' },
     { value: 50, label: 'ETH on Goerli' },
     { value: 51, label: 'USDC on Goerli' },
     { value: 4200, label: 'ETH on Optimism Testnet' },
@@ -42,7 +44,7 @@ export default function TransactionCard({
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 86, label: 'RPG BSC Mainnet' },
-    { value: 96, label: 'RPG BSC Testnet' },
+    { value: 974, label: 'RPG BSC Testnet' },
   ];
 
   const receivingAddressTypes = [
