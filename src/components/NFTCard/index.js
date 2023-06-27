@@ -30,7 +30,7 @@ export default function NFTCard({ nft, userId }) {
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
-  const [assetQuantity, setAssetQuantity] = useState('10');
+  const [assetQuantity, setAssetQuantity] = useState('100');
   const [assetId, setAssetId] = useState('');
   const [loading, setLoading] = useState(false);
 

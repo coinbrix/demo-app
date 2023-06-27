@@ -8,6 +8,7 @@ import Navbar from '../Navbar';
 import NFTCard from '../NFTCard';
 import SignMessage from '../SignMessage';
 import TransactionCard from '../TransactionCard';
+import SendToken from '../SendToken';
 
 export default function Home() {
   const [name, setName] = useState();
@@ -87,6 +88,9 @@ export default function Home() {
         </Typography>
         <SignMessage />
         <MiscOperations />
+      </Box>
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <SendToken />
       </Box>
     </div>
   );
