@@ -42,6 +42,8 @@ export default function TransactionCard({
     { value: 295481, label: 'USDC on MCH Verse Mainnet' },
     { value: 201970, label: 'OAS on SAND Verse Mainnet' },
     { value: 201971, label: 'USDC on SAND Verse Mainnet' },
+    { value: 431130, label: 'Avax on Fuji testnet' },
+    { value: 431131, label: 'USDC on Fuji testnet' },
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 974, label: 'RPG BSC Testnet' },
