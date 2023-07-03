@@ -76,16 +76,17 @@ export default function Auth() {
             color: 'primary.main',
             fontSize: [26, 52],
             lineHeight: 1,
+            marginBottom: '100px'
           }}
         >
-          demo game
+          Singularity Demo
         </Typography>
 
-        <Typography mt={4} mb={8} color="white" fontSize={[16, 24]}>
-          IN THE CITY OF GANGSTERS YOU Lorem ipsum dolor sit amet, consectetur
-          <br />
-          adipiscing elit, sed do eiusmod tempor incididunt ut
-        </Typography>
+        {/*<Typography mt={4} mb={8} color="white" fontSize={[16, 24]}>*/}
+        {/*  IN THE CITY OF GANGSTERS YOU Lorem ipsum dolor sit amet, consectetur*/}
+        {/*  <br />*/}
+        {/*  adipiscing elit, sed do eiusmod tempor incididunt ut*/}
+        {/*</Typography>*/}
 
         <Button onClick={login} variant="contained">
           sign in to continue

@@ -22,14 +22,15 @@ export default function NFTCard({ nft, userId }) {
   ];
 
   const issuingAssets = [
-    { value: 111, label: 'S9Y NFT on Polygon Mumbai' },
-    { value: 222, label: 'S9Y Token on Polygon Mumbai' },
-    { value: 333, label: 'S9Y NFT on Ethereum Sepolia' },
-    { value: 444, label: 'S9Y Token on Ethereum Sepolia' },
+    { value: 103, label: 'USDC on Conduit Appchain' }
+    // { value: 111, label: 'S9Y NFT on Polygon Mumbai' },
+    // { value: 222, label: 'S9Y Token on Polygon Mumbai' },
+    // { value: 333, label: 'S9Y NFT on Ethereum Sepolia' },
+    // { value: 444, label: 'S9Y Token on Ethereum Sepolia' },
   ];
   const [token, setToken] = useState('');
   const [amount, setAmount] = useState('');
-  const [assetQuantity, setAssetQuantity] = useState('1');
+  const [assetQuantity, setAssetQuantity] = useState('100');
   const [assetId, setAssetId] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -43,6 +44,8 @@ export default function NFTCard({ nft, userId }) {
         clientReferenceId,
         userId,
         singularityTransactionType: 'EXCHANGE',
+        transactionIconLink:
+          'https://singularity-icon-assets.s3.ap-south-1.amazonaws.com/currency/usdc.svg',
         clientReceiveObject: {
           clientRequestedAssetId: token,
         },
@@ -77,11 +80,11 @@ export default function NFTCard({ nft, userId }) {
         bgcolor: '#EBA82699',
         width: ['100%', 410],
         p:3,
-        boxSizing: 'border-box',
+        boxSizing: 'bo rder-box',
       }}
     >
       <Box textAlign="center" my={1}>
-        <img src={s9yNft} alt="" height="100px" />
+        {/*<img src={s9yNft} alt="" height="100px" />*/}
       </Box>
 
       <FormControl fullWidth>
