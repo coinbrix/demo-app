@@ -48,7 +48,7 @@ function App() {
       window.SingularityEvent.subscribe('SingularityEvent-login', data => {
         console.log('login data --->', data);
         navigate('/home');
-        // window.SingularityEvent.close();
+        window.SingularityEvent.close();
       });
 
       window.SingularityEvent.subscribe('SingularityEvent-open', () =>

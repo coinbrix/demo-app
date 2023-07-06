@@ -25,8 +25,9 @@ export default function TransactionCard({
     { value: 800010, label: 'MATIC Mumbai' },
     { value: 970, label: 'BNB BSC Testnet' },
     { value: 973, label: 'BUSD BSC Testnet' },
-    { value: 87, label: 'BNB BSC Mainnet' },
-    { value: 84, label: 'BUSD BSC Mainnet' },
+    { value: 560, label: 'BNB BSC Mainnet' },
+    { value: 563, label: 'BUSD BSC Mainnet' },
+    { value: 564, label: 'RPG BSC Mainnet' },
     { value: 50, label: 'ETH on Goerli' },
     { value: 51, label: 'USDC on Goerli' },
     { value: 4200, label: 'ETH on Optimism Testnet' },
@@ -41,9 +42,13 @@ export default function TransactionCard({
     { value: 295481, label: 'USDC on MCH Verse Mainnet' },
     { value: 201970, label: 'OAS on SAND Verse Mainnet' },
     { value: 201971, label: 'USDC on SAND Verse Mainnet' },
+    { value: 431130, label: 'Avax on Avalanche Fuji testnet' },
+    { value: 431131, label: 'USDC on Avalanche Fuji testnet' },
+    { value: 431140, label: 'Avax on Avalanche Mainnet' },
+    { value: 431141, label: 'USDC on Avalanche Mainnet' },
+    { value: 431147, label: 'LODE on Avalanche Mainnet' },
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
-    { value: 86, label: 'RPG BSC Mainnet' },
     { value: 974, label: 'RPG BSC Testnet' },
   ];
 
@@ -99,7 +104,7 @@ export default function TransactionCard({
         transactionLabel: reason,
         transactionDescription: 'Description',
         transactionIconLink:
-          'https://singularity-icon-assets.s3.ap-south-1.amazonaws.com/currency/matic.svg',
+          'https://singularity-icon-assets.s3.ap-south-1.amazonaws.com/currency/lode.svg',
         clientReceiveObject: {
           clientRequestedAssetId: token,
           clientRequestedAssetQuantity: amount,
