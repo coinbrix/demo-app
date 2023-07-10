@@ -47,6 +47,8 @@ export default function TransactionCard({
     { value: 431140, label: 'Avax on Avalanche Mainnet' },
     { value: 431141, label: 'USDC on Avalanche Mainnet' },
     { value: 431147, label: 'LODE on Avalanche Mainnet' },
+    { value: 431148, label: 'AGX on Avalanche Mainnet' },
+    { value: 431149, label: 'AUX on Avalanche Mainnet' },
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 974, label: 'RPG BSC Testnet' },
