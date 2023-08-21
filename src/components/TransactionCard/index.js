@@ -52,6 +52,8 @@ export default function TransactionCard({
     { value: 1370, label: 'MATIC Mainnet' },
     { value: 1371, label: 'USDC Mainnet' },
     { value: 974, label: 'RPG BSC Testnet' },
+    { value: 539350, label: 'JEWEL on DFK Mainnet' },
+    { value: 539351, label: 'USDC on DFK Mainnet' },
   ];
 
   const receivingAddressTypes = [
@@ -128,7 +130,7 @@ export default function TransactionCard({
       console.log('Body to generate signature ---->', body);
       const requestString = JSON.stringify(body);
       const signature = Hex.stringify(hmacSHA512(requestString, secret));
-      window.SingularityEvent.transactionFlow(requestString, signature, userId);
+      window.SingularityEvent.transactionFlow(requestString, signature);
       if (gamerAddress && handleBuyAsset) {
         handleBuyAsset();
       }
