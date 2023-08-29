@@ -22,6 +22,7 @@ function App() {
   useEffect(() => {
     console.log('adding event listener', new Date().getSeconds());
     window.document.body.addEventListener('Singularity-mounted', () => {
+      console.log('singularity mounted')
       let key;
       if (searchParams.get('key')) {
         console.log('using key through url');
