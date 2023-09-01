@@ -6,41 +6,14 @@ import TransactionCard from '../TransactionCard';
 export default function Auth() {
   const [showBuyAssetForm, toggleShowBuyAssetForm] = useState(false);
   const navigate = useNavigate();
-  const login = async () => {
-    try {
-      const loggedIn = await checkLogin();
-
-      if (!loggedIn) await window.SingularityEvent.open();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const checkLogin = async () => {
-    try {
-      console.log('checking login');
-      const user = await window.SingularityEvent.getConnectUserInfo();
-      console.log('user data', user);
-
-      if (user && user.metaData) {
-        navigate('/home');
-        return true;
-      }
-    } catch (err) {
-      console.error(err);
-    }
-
-    return false;
-  };
 
   const handleBuyAsset = () => {
     toggleShowBuyAssetForm(v => !v);
   };
 
-  useEffect(() => {
-    // Initialize Firebase
-    checkLogin();
-  }, []);
+  const openDrawer = () => {
+    window.SingularityEvent.open()
+  }
 
   return (
     <div
@@ -88,7 +61,7 @@ export default function Auth() {
         {/*  adipiscing elit, sed do eiusmod tempor incididunt ut*/}
         {/*</Typography>*/}
 
-        <Button onClick={login} variant="contained">
+        <Button onClick={openDrawer} variant="contained">
           sign in to continue
         </Button>
         <Button
