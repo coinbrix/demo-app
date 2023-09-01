@@ -41,8 +41,7 @@ function App() {
         console.log('----------singularity init callback--------')
         window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
           navigate('/');
-          window.SingularityEvent.close();
-          window.location.reload()
+          window.SingularityEvent.close()
         });
 
         window.SingularityEvent.subscribe('SingularityEvent-open', () =>
@@ -73,27 +72,30 @@ function App() {
           }
         );
 
-        console.log('before getting userData')
-        const userData = await window.SingularityEvent.getConnectUserInfo()
-        console.log('userData', userData)
+        await checkLoginAndAction()
 
         setLoading(false);
 
-        // User logged in
-        if(userData.metaData){
-          navigate('/home');
-        }
-        else{
           // user not logged in, set up login listener
           window.SingularityEvent.subscribe('SingularityEvent-login', data => {
             console.log('login data --->', data);
-            navigate('/home');
-            window.SingularityEvent.close();
+            checkLoginAndAction()
           });
-        }
+
       });
     });
   }, []);
+
+  const checkLoginAndAction = async () => {
+    console.log('before getting userData')
+    const userData = await window.SingularityEvent.getConnectUserInfo()
+    console.log('userData', userData)
+    if(userData.metaData){
+      navigate('/home');
+    }
+
+    window.SingularityEvent.close();
+  }
 
   if (loading) return (
     <div
