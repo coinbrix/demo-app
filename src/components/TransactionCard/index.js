@@ -110,7 +110,7 @@ export default function TransactionCard({
         transactionLabel: reason,
         transactionDescription: 'Description',
         transactionIconLink:
-          'https://singularity-icon-assets.s3.ap-south-1.amazonaws.com/currency/lode.svg',
+          'https://singularity-icon-assets.s3.ap-south-1.amazonaws.com/currency/ape.svg',
         clientReceiveObject: {
           clientRequestedAssetId: token,
           clientRequestedAssetQuantity: amount,
