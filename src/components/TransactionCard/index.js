@@ -115,6 +115,7 @@ export default function TransactionCard({
           clientRequestedAssetId: token,
           clientRequestedAssetQuantity: amount,
         },
+        optionalAssets: tokens.map(token => token.value)
       };
       if (gamerAddress) {
         body = {
