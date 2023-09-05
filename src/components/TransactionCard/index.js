@@ -56,7 +56,10 @@ export default function TransactionCard({
     { value: 1371, label: 'USDC Mainnet', symbol:'usdc' },
     { value: 974, label: 'RPG BSC Testnet',  symbol:'rpg' },
     { value: 539350, label: 'JEWEL on DFK Mainnet', symbol:'jewel' },
-    { value: 539351, label: 'USDC on DFK Mainnet', symbol:'jewel' },
+    { value: 539351, label: 'USDC on DFK Mainnet', symbol:'usdc' },
+    { value: 5393512, label: 'AVAX on DFK Mainnet', symbol:'avax' },
+    { value: 5393513, label: 'CRYSTAL on DFK Mainnet', symbol:'crystal' },
+    { value: 5393514, label: 'KLAY on DFK Mainnet', symbol:'klay' },
   ];
 
   const receivingAddressTypes = [
