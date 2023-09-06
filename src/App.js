@@ -40,6 +40,7 @@ function App() {
       window.Singularity.init(key, async () => {
         console.log('----------singularity init callback--------')
         window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
+          console.log('logout event received')
           navigate('/');
           window.SingularityEvent.close()
         });
@@ -125,21 +126,21 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {drawerOpen && (
-        <div
-          onClick={() => window.SingularityEvent.close()}
-          style={{
-            height: '100vh',
-            width: '100vw',
-            backgroundColor: 'black',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 1,
-            opacity: 0.5,
-          }}
-        />
-      )}
+      {/*{drawerOpen && (*/}
+      {/*  <div*/}
+      {/*    onClick={() => window.SingularityEvent.close()}*/}
+      {/*    style={{*/}
+      {/*      height: '100vh',*/}
+      {/*      width: '100vw',*/}
+      {/*      backgroundColor: 'black',*/}
+      {/*      position: 'fixed',*/}
+      {/*      top: 0,*/}
+      {/*      left: 0,*/}
+      {/*      zIndex: 1,*/}
+      {/*      opacity: 0.5,*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*)}*/}
 
       <Routes>
         <Route path="/" element={<Auth />} />
