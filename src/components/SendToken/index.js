@@ -9,8 +9,8 @@ export default function SendToken() {
     try {
       const sendTokenResponse =
         await window.SingularityEvent.signAndSendTransaction({
-          amount,
-          address,
+          value: amount,
+          to: address,
         });
       console.log('sendTokenResponse --->', sendTokenResponse);
       if (sendTokenResponse)
