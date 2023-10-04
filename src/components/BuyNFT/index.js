@@ -62,7 +62,7 @@ export default function BuyNFT() {
           clientRequestedAssetId: clientRequestedAssetTd,
         },
         transactionIconLink: 'https://singularity-web-assets-public.s3.ap-south-1.amazonaws.com/s9ynft.jpeg',
-        transactionLabel: 'S9Y Token',
+        transactionLabel: 'S9Y NFT',
         userReceiveAssetDetailsList: [
           {
             marketplaceId: marketPlaceId,

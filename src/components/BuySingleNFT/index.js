@@ -52,7 +52,7 @@ export default function BuySingleNFT() {
         clientReferenceId,
         singularityTransactionType: 'NFT_PURCHASE',
         transactionIconLink: 'https://singularity-web-assets-public.s3.ap-south-1.amazonaws.com/s9ynft.jpeg',
-        transactionLabel: 'S9Y Token',
+        transactionLabel: 'S9Y NFT',
         clientReceiveObject: {
           clientRequestedAssetId: clientRequestedAssetTd,
         },
@@ -105,13 +105,20 @@ export default function BuySingleNFT() {
 
 
       <TextField
-        placeholder="user requested nft quantity"
-        label="user requested nft quantity"
+        placeholder="Quantity"
+        label="Quantity"
+        type={'number'}
         value={userRequestedNftQuantity}
         onChange={e => setUserRequestedNftQuantity(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
+
+      <div>
+        1 NFT = 1 MATIC
+        <br />
+        Price = {Number(userRequestedNftPrice) * (Number(userRequestedNftQuantity))} MATIC
+      </div>
 
       <Button
         sx={{
