@@ -39,7 +39,7 @@ export default function BuySingleNFT() {
   const [userRequestedNftQuantity, setUserRequestedNftQuantity] = useState('');
   const [userRequestedNftType, setUserRequestedNftType] = useState('ERC1155');
   const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState('BUY');
-  const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('');
+  const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('1');
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -107,15 +107,6 @@ export default function BuySingleNFT() {
         label="user requested nft quantity"
         value={userRequestedNftQuantity}
         onChange={e => setUserRequestedNftQuantity(e.target.value)}
-        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
-        sx={{ mt: 1 }}
-      />
-
-      <TextField
-        placeholder="user requested nft price"
-        label="user requested nft price"
-        value={userRequestedNftPrice}
-        onChange={e => setUserRequestedNftPrice(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
