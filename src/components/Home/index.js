@@ -9,6 +9,10 @@ import NFTCard from '../NFTCard';
 import SignMessage from '../SignMessage';
 import TransactionCard from '../TransactionCard';
 import SendToken from '../SendToken';
+import SignAndSendTransaction from '../SignAndSendTransaction';
+import SignTransaction from '../SignTransaction';
+import BuyNFT from '../BuyNFT';
+import BuySingleNFT from '../BuySingleNFT';
 
 export default function Home() {
   const [name, setName] = useState();
@@ -92,6 +96,25 @@ export default function Home() {
       <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
         <SendToken />
       </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <SignAndSendTransaction />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <SignTransaction />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuySingleNFT />
+      </Box>
+
+
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuyNFT />
+      </Box>
+
     </div>
   );
 }
