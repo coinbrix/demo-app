@@ -15,8 +15,27 @@ import { v4 as uuidv4 } from 'uuid';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import Hex from 'crypto-js/enc-hex';
 import s9yNft from '../../assets/s9ynft.jpeg';
+import { useSearchParams } from 'react-router-dom';
 
 export default function BuySingleNFT() {
+
+  const [searchParams] = useSearchParams();
+
+  const getKey = () => {
+    let key;
+    if (searchParams.get('key')) {
+      console.log('using key through url');
+      key = searchParams.get('key');
+    } else if (localStorage.getItem('singularity-key')) {
+      console.log('using key through localStorage');
+      key = localStorage.getItem('singularity-key');
+    } else {
+      console.log('using default key value');
+      key = 2; // default key
+    }
+    localStorage.setItem('singularity-key', key);
+    return key;
+  }
 
   const nftTypes = [
     {
@@ -32,14 +51,47 @@ export default function BuySingleNFT() {
     }
   ];
 
-  const [clientRequestedAssetTd, setClientRequestedAssetTd] = useState('800010');
-  const [marketPlaceId, setMarketPlaceId] = useState('MARKETPLACE_1');
-  const [userRequestedNftId, setUserRequestedNftId] = useState('0');
-  const [userRequestedNftAddress, setUserRequestedNftAddress] = useState('0x572954A0db4bdA484CebbD6e50dBA519d35230Bc');
+  const getClientRequestedAssetId = () => {
+    return getKey() === '40875' ? '408750' : '800010'
+  }
+
+  const getMarketplaceId = () => {
+    return getKey() === '40875' ? 'MARKETPLACE_2' : 'MARKETPLACE_1'
+  }
+
+  const getNftId = () => {
+    return getKey() === '40875' ? '0' : '0'
+  }
+
+  const getNftAddress = () => {
+    return getKey() === '40875' ? '0x32AA1A10383C0499FaA7ed09Bc52424A99985E35' : '0x572954A0db4bdA484CebbD6e50dBA519d35230Bc'
+  }
+
+  const getNftType = () => {
+    return getKey() === '40875' ? 'ERC1155' : 'ERC1155'
+  }
+
+  const getTradeType = () => {
+    return getKey() === '40875' ? 'BUY' : 'BUY'
+  }
+
+  const getNftPrice = () => {
+    return getKey() === '40875' ? '0.1' : '1'
+  }
+
+  const getTokenName = () => {
+    return getKey() === '40875' ? 'OAS' : 'MATIC'
+  }
+
+
+  const [clientRequestedAssetTd, setClientRequestedAssetTd] = useState(getClientRequestedAssetId());
+  const [marketPlaceId, setMarketPlaceId] = useState(getMarketplaceId());
+  const [userRequestedNftId, setUserRequestedNftId] = useState(getNftId());
+  const [userRequestedNftAddress, setUserRequestedNftAddress] = useState(getNftAddress());
   const [userRequestedNftQuantity, setUserRequestedNftQuantity] = useState('');
-  const [userRequestedNftType, setUserRequestedNftType] = useState('ERC1155');
-  const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState('BUY');
-  const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('1');
+  const [userRequestedNftType, setUserRequestedNftType] = useState(getNftType);
+  const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState(getTradeType);
+  const [userRequestedNftPrice, setUserRequestedNftPrice] = useState(getNftPrice());
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -115,9 +167,9 @@ export default function BuySingleNFT() {
       />
 
       <div>
-        1 NFT = 1 MATIC
+        1 NFT = {getNftPrice()} {getTokenName()}
         <br />
-        Price = {Number(userRequestedNftPrice) * (Number(userRequestedNftQuantity))} MATIC
+        Price = {Number(userRequestedNftPrice) * (Number(userRequestedNftQuantity))} {getTokenName()}
       </div>
 
       <Button
