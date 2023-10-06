@@ -24,13 +24,10 @@ export default function BuySingleNFT() {
   const getKey = () => {
     let key;
     if (searchParams.get('key')) {
-      console.log('using key through url');
       key = searchParams.get('key');
     } else if (localStorage.getItem('singularity-key')) {
-      console.log('using key through localStorage');
       key = localStorage.getItem('singularity-key');
     } else {
-      console.log('using default key value');
       key = 2; // default key
     }
     localStorage.setItem('singularity-key', key);
