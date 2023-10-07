@@ -26,6 +26,10 @@
     -->
     <title>Singularity Demo App</title>
     <script>
+      var clientScriptUrl = 'https://unpkg.com/singularity-client-script@1.7.12/index.js'
+      if('%REACT_APP_ENV%' === 'local'){
+        clientScriptUrl = 'http://localhost:9091/index.js'
+      }
       (function (w, d, s, o, f, js, fjs, e) {
         w[o] =
           w[o] ||
@@ -43,7 +47,7 @@
         document,
         'script',
         'Singularity',
-        'https://unpkg.com/singularity-client-script@1.7.12/index.js',
+        clientScriptUrl,
         '',
         '',
         '%REACT_APP_ENV%'
