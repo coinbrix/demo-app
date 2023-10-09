@@ -104,6 +104,7 @@ export default function BuySingleNFT() {
         transactionLabel: 'S9Y NFT',
         clientReceiveObject: {
           clientRequestedAssetId: clientRequestedAssetTd,
+          address: "0xCA4511435F99dcbf3Ab7cba04C8A16721eB7b894"
         },
         userReceiveAssetDetailsList: [
           {

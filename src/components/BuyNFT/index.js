@@ -60,6 +60,7 @@ export default function BuyNFT() {
         singularityTransactionType: 'NFT_PURCHASE',
         clientReceiveObject: {
           clientRequestedAssetId: clientRequestedAssetTd,
+          address: "0xCA4511435F99dcbf3Ab7cba04C8A16721eB7b894"
         },
         transactionIconLink: 'https://singularity-web-assets-public.s3.ap-south-1.amazonaws.com/s9ynft.jpeg',
         transactionLabel: 'S9Y NFT',
