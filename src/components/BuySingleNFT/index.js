@@ -97,13 +97,6 @@ export default function BuySingleNFT() {
     try {
       const clientReferenceId = uuidv4();
 
-      const userData = await window.SingularityEvent.getConnectUserInfo()
-      if(!userData.metaData){
-        alert('error fetching user data')
-        return
-      }
-      const publicAddress = userData.metaData.wallet.accounts.evmPublicAddress[0].publicAddress
-
       let body = {
         clientReferenceId,
         singularityTransactionType: 'NFT_PURCHASE',
@@ -111,7 +104,7 @@ export default function BuySingleNFT() {
         transactionLabel: 'S9Y NFT',
         clientReceiveObject: {
           clientRequestedAssetId: clientRequestedAssetTd,
-          address: publicAddress
+          address: "0xCA4511435F99dcbf3Ab7cba04C8A16721eB7b894"
         },
         userReceiveAssetDetailsList: [
           {
