@@ -61,10 +61,11 @@ export default function Auth() {
         {/*  adipiscing elit, sed do eiusmod tempor incididunt ut*/}
         {/*</Typography>*/}
 
-        <Button onClick={openDrawer} variant="contained">
+        <Button onClick={openDrawer} variant="contained" data-cy-attr="sign-in">
           sign in to continue
         </Button>
         <Button
+          data-cy-attr="buy-asset"
           onClick={handleBuyAsset}
           variant="outlined"
           sx={{
