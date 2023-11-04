@@ -80,7 +80,9 @@ function App() {
         const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
 
         if(isAutomation === 'true') {
-          window.SingularityEvent.open();
+          setTimeout(() => {
+            window.SingularityEvent.open();
+          }, 3000);
         }
           // user not logged in, set up login listener
           window.SingularityEvent.subscribe('SingularityEvent-login', data => {
