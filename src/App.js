@@ -77,6 +77,11 @@ function App() {
 
         setLoading(false);
 
+        const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
+
+        if(isAutomation === 'true') {
+          window.SingularityEvent.open();
+        }
           // user not logged in, set up login listener
           window.SingularityEvent.subscribe('SingularityEvent-login', data => {
             console.log('login data --->', data);
