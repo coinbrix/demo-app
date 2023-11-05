@@ -84,7 +84,7 @@ function App() {
             window.SingularityEvent.open();
           }, 3000);
 
-          setInterval(() => {
+          setTimeout(() => {
             console.log('simulating----');
             window.SingularityEvent.simulAction("[data-cy-attr='social-login-Google']", "click")
           }, 5000);
