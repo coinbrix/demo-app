@@ -109,6 +109,10 @@ function App() {
     document.querySelector('[data-cy-attr="social-login-Google"]').click()
   }
 
+  const renderCypressEle = () => {
+    return <div onClick={handleGoogleSignInClick} style={{display: 'none'}} data-cy-attr="singularity-google-login"></div>
+  }
+
   if (loading) return (
     <div
       style={{
@@ -131,7 +135,7 @@ function App() {
           position: 'relative',
         }}
       />
-      <div onClick={handleGoogleSignInClick} style={{display: 'none'}} data-cy-attr="singularity-google-login"></div>
+      {renderCypressEle()}
     </div>
   );
 
@@ -159,6 +163,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/marketplace" element={<NFTMarketplace />} />
       </Routes>
+      {renderCypressEle()}
     </ThemeProvider>
   );
 }
