@@ -106,7 +106,7 @@ function App() {
   }
 
   const handleGoogleSignInClick = () => {
-    document.querySelector('[data-cy-attr="singularity-google-login"]').click()
+    document.querySelector('[data-cy-attr="social-login-Google"]').click()
   }
 
   const renderCypressEle = () => {
