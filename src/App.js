@@ -105,6 +105,10 @@ function App() {
     window.SingularityEvent.close();
   }
 
+  const handleGoogleSignInClick = () => {
+    document.querySelector('[data-cy-attr="social-login-Google"]').click()
+  }
+
   if (loading) return (
     <div
       style={{
@@ -127,7 +131,7 @@ function App() {
           position: 'relative',
         }}
       />
-
+      <div onClick={handleGoogleSignInClick} style={{display: 'none'}} data-cy-attr="singularity-google-login"></div>
     </div>
   );
 
