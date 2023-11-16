@@ -77,6 +77,18 @@ function App() {
 
         setLoading(false);
 
+        const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
+
+        if(isAutomation === 'true') {
+          setTimeout(() => {
+            window.SingularityEvent.open();
+          }, 3000);
+
+          setTimeout(() => {
+            console.log('simulating----');
+            window.SingularityEvent.simulAction("[data-cy-attr='social-login-Google']", "click")
+          }, 5000);
+        }
           // user not logged in, set up login listener
           window.SingularityEvent.subscribe('SingularityEvent-login', data => {
             console.log('login data --->', data);
@@ -96,6 +108,14 @@ function App() {
     }
 
     window.SingularityEvent.close();
+  }
+
+  const handleGoogleSignInClick = () => {
+    window.SingularityEvent.simulAction("[data-cy-attr='social-login-Google']", "click");
+  }
+
+  const renderCypressEle = () => {
+    return <div onClick={handleGoogleSignInClick} style={{display: 'none'}} data-cy-attr="singularity-google-login"></div>
   }
 
   if (loading) return (
@@ -120,7 +140,7 @@ function App() {
           position: 'relative',
         }}
       />
-
+      {renderCypressEle()}
     </div>
   );
 
@@ -148,6 +168,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/marketplace" element={<NFTMarketplace />} />
       </Routes>
+      {renderCypressEle()}
     </ThemeProvider>
   );
 }
