@@ -64,6 +64,7 @@ export default function TransactionCard({
     { value: 2481, label: 'USDC on Oasys Mainnet',symbol:'usdc' },
     { value: 190110, label: 'OAS on Homeverse Mainnet',symbol: 'oas' },
     { value: 190111, label: 'USDC on Homeverse Mainnet',symbol:'usdc' },
+    { value: 13718, label: 'DOGA Mainnet', symbol:'doga' },
   ];
 
   const receivingAddressTypes = [
