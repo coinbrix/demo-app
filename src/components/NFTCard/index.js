@@ -78,9 +78,9 @@ export default function NFTCard({ nft, userId }) {
         border: '6px solid',
         borderColor: 'primary.main',
         bgcolor: '#EBA82699',
-        width: ['100%', 410],
+        width: ['100%', 400],
         p:3,
-        boxSizing: 'bo rder-box',
+        boxSizing: 'border-box',
       }}
     >
       <Box textAlign="center" my={1}>
