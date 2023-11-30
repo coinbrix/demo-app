@@ -47,6 +47,11 @@ export default function BuyNFT() {
   const [userRequestedNftType, setUserRequestedNftType] = useState(nftTypes[0].value);
   const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState(tradeType[0].value);
   const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('');
+
+  const [seaportOrderHash, setSeaportOrderHash] = useState('');
+  const [seaportOrderSignature, setSeaportOrderSignature] = useState('');
+  const [seaportOrderOfferer, setSeaportOrderOfferer] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -72,7 +77,10 @@ export default function BuyNFT() {
             userRequestedNFTQuantity: userRequestedNftQuantity,
             userRequestedNFTType: userRequestedNftType,
             userRequestedNFTPrice: userRequestedNftPrice,
-            userRequestedNFTTradeType: userRequestedNFTTradeType
+            userRequestedNFTTradeType: userRequestedNFTTradeType,
+            seaportOrderHash: seaportOrderHash,
+            seaportOrderSignature: seaportOrderSignature,
+            seaportOrderOfferer: seaportOrderOfferer
           }
         ]
       };
@@ -191,6 +199,33 @@ export default function BuyNFT() {
         label="user requested nft price"
         value={userRequestedNftPrice}
         onChange={e => setUserRequestedNftPrice(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="seaportOrderHash"
+        label="seaportOrderHash"
+        value={seaportOrderHash}
+        onChange={e => setSeaportOrderHash(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="seaportOrderSignature"
+        label="seaportOrderSignature"
+        value={seaportOrderSignature}
+        onChange={e => setSeaportOrderSignature(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="seaportOrderOfferer"
+        label="seaportOrderOfferer"
+        value={seaportOrderOfferer}
+        onChange={e => setSeaportOrderOfferer(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
