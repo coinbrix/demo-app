@@ -213,8 +213,8 @@ export default function BuyNFT() {
       />
 
       <TextField
-        placeholder="seaportOrderSignature"
-        label="seaportOrderSignature"
+        placeholder="seaportOrderData"
+        label="seaportOrderData"
         value={seaportOrderData}
         onChange={e => setSeaportOrderData(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
