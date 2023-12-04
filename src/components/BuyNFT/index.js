@@ -49,8 +49,7 @@ export default function BuyNFT() {
   const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('');
 
   const [seaportOrderHash, setSeaportOrderHash] = useState('');
-  const [seaportOrderSignature, setSeaportOrderSignature] = useState('');
-  const [seaportOrderOfferer, setSeaportOrderOfferer] = useState('');
+  const [seaportOrderData, setSeaportOrderData] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -78,9 +77,10 @@ export default function BuyNFT() {
             userRequestedNFTType: userRequestedNftType,
             userRequestedNFTPrice: userRequestedNftPrice,
             userRequestedNFTTradeType: userRequestedNFTTradeType,
-            seaportOrderHash: seaportOrderHash,
-            seaportOrderSignature: seaportOrderSignature,
-            seaportOrderOfferer: seaportOrderOfferer
+            seaportData: {
+              seaportOrderHash: seaportOrderHash,
+              seaportOrderData: seaportOrderData
+            }
           }
         ]
       };
@@ -215,17 +215,8 @@ export default function BuyNFT() {
       <TextField
         placeholder="seaportOrderSignature"
         label="seaportOrderSignature"
-        value={seaportOrderSignature}
-        onChange={e => setSeaportOrderSignature(e.target.value)}
-        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
-        sx={{ mt: 1 }}
-      />
-
-      <TextField
-        placeholder="seaportOrderOfferer"
-        label="seaportOrderOfferer"
-        value={seaportOrderOfferer}
-        onChange={e => setSeaportOrderOfferer(e.target.value)}
+        value={seaportOrderData}
+        onChange={e => setSeaportOrderData(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
