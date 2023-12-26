@@ -37,8 +37,12 @@ function App() {
       }
       localStorage.setItem('singularity-key', key);
 
+      const INIT_TRACKER = 'INIT_TRACKER';
+
+      console.time(INIT_TRACKER);
+
       window.Singularity.init(key, async () => {
-        console.log('----------singularity init callback--------')
+        console.timeEnd(INIT_TRACKER);
         window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
           console.log('logout event received')
           navigate('/');
