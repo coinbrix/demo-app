@@ -20,7 +20,7 @@ export default function TransactionCard({
   showUserAddressField,
   handleBuyAsset,
 }) {
-  
+
   const tokens = [
     { value: 800011, label: 'USDC Mumbai', symbol: 'usdc' },
     { value: 800010, label: 'MATIC Mumbai',symbol:'matic' },
@@ -65,6 +65,9 @@ export default function TransactionCard({
     { value: 190110, label: 'OAS on Homeverse Mainnet',symbol: 'oas' },
     { value: 190111, label: 'USDC on Homeverse Mainnet',symbol:'usdc' },
     { value: 13718, label: 'DOGA Mainnet', symbol:'doga' },
+    { value: 1901119, label: 'MARD on Homeverse', symbol:'mard' },
+    { value: 24819, label: 'MARD on Oasys', symbol:'mard' },
+    { value: 4311412, label: 'SHRAP on Avalanche Mainnet', symbol:'shrap' },
   ];
 
   const receivingAddressTypes = [
@@ -203,7 +206,7 @@ export default function TransactionCard({
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
-      {/* showUserAddressField prop is passed only in case of non-login form, 
+      {/* showUserAddressField prop is passed only in case of non-login form,
         where we have to explicitly take user address */}
       {showUserAddressField ? (
         <TextField
