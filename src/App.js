@@ -73,9 +73,9 @@ function App() {
           }
         );
 
-        setLoading(false);
+        await checkLoginAndAction()
 
-        await checkLoginAndAction();
+        setLoading(false);
 
         const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
 
