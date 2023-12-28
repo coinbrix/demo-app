@@ -37,12 +37,7 @@ function App() {
       }
       localStorage.setItem('singularity-key', key);
 
-      const INIT_TRACKER = 'INIT_TRACKER';
-
-      console.time(INIT_TRACKER);
-
-      window.Singularity.init(key, async () => {
-        console.timeEnd(INIT_TRACKER);
+      const initAllSubscriptions = () => {
         window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
           console.log('logout event received')
           navigate('/');
@@ -77,11 +72,13 @@ function App() {
           }
         );
 
-        setLoading(false);
-        
-        await checkLoginAndAction();
+        window.SingularityEvent.subscribe('SingularityEvent-login', data => {
+          console.log('login data --->', data);
+          checkLoginAndAction()
+        });
+      }
 
-
+      const initAutomation = () => {
         const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
 
         if(isAutomation === 'true') {
@@ -94,11 +91,16 @@ function App() {
             window.SingularityEvent.simulAction("[data-cy-attr='social-login-Google']", "click")
           }, 5000);
         }
-          // user not logged in, set up login listener
-          window.SingularityEvent.subscribe('SingularityEvent-login', data => {
-            console.log('login data --->', data);
-            checkLoginAndAction()
-          });
+      }
+
+      window.Singularity.init(key, async () => {
+
+        await checkLoginAndAction();
+        setLoading(false);
+
+        initAllSubscriptions();
+
+        initAutomation();
 
       });
     });
