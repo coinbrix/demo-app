@@ -95,9 +95,9 @@ function App() {
 
       window.Singularity.init(key, async () => {
 
-        await checkLoginAndAction();
         setLoading(false);
-
+        await checkLoginAndAction();
+        
         initAllSubscriptions();
 
         initAutomation();
