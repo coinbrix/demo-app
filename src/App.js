@@ -72,11 +72,10 @@ function App() {
             console.log('Txn failed', JSON.parse(data));
           }
         );
-
-        
-        await checkLoginAndAction()
         
         setLoading(false);
+
+        await checkLoginAndAction();
 
         const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
 
