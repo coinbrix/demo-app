@@ -73,27 +73,14 @@ function App() {
           }
         );
 
-        await checkLoginAndAction()
-
+        window.SingularityEvent.subscribe('SingularityEvent-login', data => {
+          console.log('login data --->', data);
+          checkLoginAndAction()
+        });
+        
         setLoading(false);
-
-        const isAutomation = new URLSearchParams(window?.location?.search)?.get('isAutomation');
-
-        if(isAutomation === 'true') {
-          setTimeout(() => {
-            window.SingularityEvent.open();
-          }, 3000);
-
-          setTimeout(() => {
-            console.log('simulating----');
-            window.SingularityEvent.simulAction("[data-cy-attr='social-login-Google']", "click")
-          }, 5000);
-        }
-          // user not logged in, set up login listener
-          window.SingularityEvent.subscribe('SingularityEvent-login', data => {
-            console.log('login data --->', data);
-            checkLoginAndAction()
-          });
+        
+        await checkLoginAndAction();
 
       });
     });
