@@ -67,6 +67,7 @@ export default function TransactionCard({
     { value: 13718, label: 'DOGA Mainnet', symbol:'doga' },
     { value: 1901119, label: 'MARD on Homeverse', symbol:'mard' },
     { value: 24819, label: 'MARD on Oasys', symbol:'mard' },
+    { value: 4311412, label: 'SHRAP on Avalanche Mainnet', symbol:'shrap' },
   ];
 
   const receivingAddressTypes = [
