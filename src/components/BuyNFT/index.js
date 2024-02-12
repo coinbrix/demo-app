@@ -40,13 +40,17 @@ export default function BuyNFT() {
   ];
 
   const [clientRequestedAssetTd, setClientRequestedAssetTd] = useState();
-  const [marketPlaceId, setMarketPlaceId] = useState('');
-  const [userRequestedNftId, setUserRequestedNftId] = useState('');
-  const [userRequestedNftAddress, setUserRequestedNftAddress] = useState('');
-  const [userRequestedNftQuantity, setUserRequestedNftQuantity] = useState('');
-  const [userRequestedNftType, setUserRequestedNftType] = useState(nftTypes[0].value);
+  const [marketplaceId, setMarketplaceId] = useState('');
+  const [userRequestedNFTId, setUserRequestedNFTId] = useState('');
+  const [userRequestedNFTAddress, setUserRequestedNFTAddress] = useState('');
+  const [userRequestedNFTQuantity, setUserRequestedNFTQuantity] = useState('');
+  const [userRequestedNFTType, setUserRequestedNFTType] = useState(nftTypes[0].value);
   const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState(tradeType[0].value);
-  const [userRequestedNftPrice, setUserRequestedNftPrice] = useState('');
+  const [userRequestedNFTPrice, setUserRequestedNFTPrice] = useState('');
+
+  const [seaportOrderHash, setSeaportOrderHash] = useState('');
+  const [seaportOrderData, setSeaportOrderData] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -54,6 +58,78 @@ export default function BuyNFT() {
 
     try {
       const clientReferenceId = uuidv4();
+
+      let seaportData = {}
+      if(seaportOrderHash){
+        seaportData = {
+          ...seaportData,
+          seaportOrderHash: seaportOrderHash
+        }
+      }
+
+      if(seaportOrderData){
+        seaportData = {
+          ...seaportData,
+          seaportOrderData: seaportOrderData
+        }
+      }
+
+      let userReceiveAssetDetail = {}
+      if(marketplaceId){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          marketplaceId: marketplaceId
+        }
+      }
+
+      if(userRequestedNFTId){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTId: userRequestedNFTId
+        }
+      }
+
+      if(userRequestedNFTAddress){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTAddress: userRequestedNFTAddress
+        }
+      }
+
+      if(userRequestedNFTQuantity){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTQuantity: userRequestedNFTQuantity
+        }
+      }
+
+      if(userRequestedNFTType){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTType: userRequestedNFTType
+        }
+      }
+
+      if(userRequestedNFTPrice){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTPrice: userRequestedNFTPrice
+        }
+      }
+
+      if(userRequestedNFTTradeType){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          userRequestedNFTTradeType: userRequestedNFTTradeType
+        }
+      }
+
+      if(Object.keys(seaportData).length){
+        userReceiveAssetDetail = {
+          ...userReceiveAssetDetail,
+          seaportData: seaportData
+        }
+      }
 
       let body = {
         clientReferenceId,
@@ -64,17 +140,7 @@ export default function BuyNFT() {
         },
         transactionIconLink: 'https://singularity-web-assets-public.s3.ap-south-1.amazonaws.com/s9ynft.jpeg',
         transactionLabel: 'S9Y NFT',
-        userReceiveAssetDetailsList: [
-          {
-            marketplaceId: marketPlaceId,
-            userRequestedNFTId: userRequestedNftId,
-            userRequestedNFTAddress: userRequestedNftAddress,
-            userRequestedNFTQuantity: userRequestedNftQuantity,
-            userRequestedNFTType: userRequestedNftType,
-            userRequestedNFTPrice: userRequestedNftPrice,
-            userRequestedNFTTradeType: userRequestedNFTTradeType
-          }
-        ]
+        userReceiveAssetDetailsList: [userReceiveAssetDetail]
       };
       const secret =
         'SSk49aq1/kQ1eKH7Sg+u4JsisvrycRcLopHdM6lNEMVe/p7lsSVoRiY0neFYNJkHoWVEK30bPAV2pNU2WwOJXQ==';
@@ -112,8 +178,8 @@ export default function BuyNFT() {
           <InputLabel style={{ fontSize: '20px' }}>Requested NFT Type</InputLabel>
         )}
         <Select
-          value={userRequestedNftType}
-          onChange={e => setUserRequestedNftType(e.target.value)}
+          value={userRequestedNFTType}
+          onChange={e => setUserRequestedNFTType(e.target.value)}
           input={<OutlinedInput style={{ fontSize: '20px' }} />}
         >
           {nftTypes.map(({ value, label }) => (
@@ -153,8 +219,8 @@ export default function BuyNFT() {
       <TextField
         label="Market placed id"
         placeholder="Market placed id"
-        value={marketPlaceId}
-        onChange={e => setMarketPlaceId(e.target.value)}
+        value={marketplaceId}
+        onChange={e => setMarketplaceId(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
@@ -162,8 +228,8 @@ export default function BuyNFT() {
       <TextField
         placeholder="user requested nft id"
         label="user requested nft id"
-        value={userRequestedNftId}
-        onChange={e => setUserRequestedNftId(e.target.value)}
+        value={userRequestedNFTId}
+        onChange={e => setUserRequestedNFTId(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
@@ -171,8 +237,8 @@ export default function BuyNFT() {
       <TextField
         placeholder="user requested nft address"
         label="user requested nft address"
-        value={userRequestedNftAddress}
-        onChange={e => setUserRequestedNftAddress(e.target.value)}
+        value={userRequestedNFTAddress}
+        onChange={e => setUserRequestedNFTAddress(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
@@ -180,8 +246,8 @@ export default function BuyNFT() {
       <TextField
         placeholder="user requested nft quantity"
         label="user requested nft quantity"
-        value={userRequestedNftQuantity}
-        onChange={e => setUserRequestedNftQuantity(e.target.value)}
+        value={userRequestedNFTQuantity}
+        onChange={e => setUserRequestedNFTQuantity(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
@@ -189,8 +255,26 @@ export default function BuyNFT() {
       <TextField
         placeholder="user requested nft price"
         label="user requested nft price"
-        value={userRequestedNftPrice}
-        onChange={e => setUserRequestedNftPrice(e.target.value)}
+        value={userRequestedNFTPrice}
+        onChange={e => setUserRequestedNFTPrice(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="seaportOrderHash"
+        label="seaportOrderHash"
+        value={seaportOrderHash}
+        onChange={e => setSeaportOrderHash(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="seaportOrderData"
+        label="seaportOrderData"
+        value={seaportOrderData}
+        onChange={e => setSeaportOrderData(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
@@ -202,7 +286,7 @@ export default function BuyNFT() {
           mt: 1,
         }}
         variant="contained"
-        disabled={!userRequestedNftType || loading}
+        disabled={!userRequestedNFTType || loading}
         onClick={initiateTransaction}
       >
         {loading ? 'Loading' : 'Request'}

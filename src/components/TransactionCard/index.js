@@ -20,15 +20,15 @@ export default function TransactionCard({
   showUserAddressField,
   handleBuyAsset,
 }) {
-  
+
   const tokens = [
     { value: 800011, label: 'USDC Mumbai', symbol: 'usdc' },
     { value: 800010, label: 'MATIC Mumbai',symbol:'matic' },
     { value: 970, label: 'BNB BSC Testnet',symbol: 'bnb' },
-    { value: 973, label: 'BUSD BSC Testnet',symbol: 'busd' },
-    { value: 560, label: 'BNB BSC Mainnet',symbol: 'bnb' },
-    { value: 563, label: 'BUSD BSC Mainnet',symbol: 'busd' },
-    { value: 564, label: 'RPG BSC Mainnet',symbol: 'rpg' },
+    { value: 973, label: 'BUSD BSC Testnet', symbol: 'busd' },
+    { value: 87, label: 'BNB BSC Mainnet', symbol: 'bnb' },
+    { value: 84, label: 'BUSD BSC Mainnet', symbol: 'busd' },
+    { value: 86, label: 'RPG BSC Mainnet', symbol: 'rpg' },
     { value: 50, label: 'ETH on Goerli',symbol: 'eth'  },
     { value: 51, label: 'USDC on Goerli',symbol: 'usdc' },
     { value: 4200, label: 'ETH on Optimism Testnet',symbol: 'eth' },
@@ -39,8 +39,6 @@ export default function TransactionCard({
     { value: 2221, label: 'USDC on Conduit Goerli Appchain',symbol: 'usdc' },
     { value: 93720, label: 'OAS on Oasys Testnet',symbol: 'oas' },
     { value: 93721, label: 'USDC on Oasys Testnet',symbol:'usdc' },
-    { value: 295480, label: 'OAS on MCH Verse Mainnet',symbol:'oas' },
-    { value: 295481, label: 'USDC on MCH Verse Mainnet',symbol: 'usdc' },
     { value: 201970, label: 'OAS on SAND Verse', symbol:'oas' },
     { value: 201971, label: 'USDC on SAND Verse', symbol:'usdc' },
     { value: 408750, label: 'OAS on Home Verse Testnet', symbol:'oas' },
@@ -52,14 +50,30 @@ export default function TransactionCard({
     { value: 431147, label: 'LODE on Avalanche Mainnet', symbol:'lode' },
     { value: 431148, label: 'AGX on Avalanche Mainnet', symbol:'agx'},
     { value: 431149, label: 'AUX on Avalanche Mainnet', symbol:'avax' },
-    { value: 1370, label: 'MATIC Mainnet', symbol:'matic' },
-    { value: 1371, label: 'USDC Mainnet', symbol:'usdc' },
+    { value: 4311420, label: 'USDT on Avalanche Mainnet', symbol:'usdt' },
+    { value: 1370, label: 'MATIC Polygon Mainnet', symbol:'matic' },
+    { value: 1371, label: 'USDC Polygon Mainnet', symbol:'usdc' },
+    { value: 13720, label: 'USDT on Polygon Mainnet', symbol:'usdt' },
     { value: 974, label: 'RPG BSC Testnet',  symbol:'rpg' },
     { value: 539350, label: 'JEWEL on DFK Mainnet', symbol:'jewel' },
     { value: 539351, label: 'USDC on DFK Mainnet', symbol:'usdc' },
     { value: 5393512, label: 'AVAX on DFK Mainnet', symbol:'avax' },
     { value: 5393513, label: 'CRYSTAL on DFK Mainnet', symbol:'crystal' },
     { value: 5393514, label: 'KLAY on DFK Mainnet', symbol:'klay' },
+    { value: 5393520, label: 'USDT on DFK Mainnet', symbol:'usdt' },
+    { value: 2480, label: 'OAS on Oasys Mainnet', symbol: 'oas' },
+    { value: 2481, label: 'USDC on Oasys Mainnet',symbol:'usdc' },
+    { value: 24821, label: 'MCHC on Oasys Mainnet', symbol:'mchc' },
+    { value: 24820, label: 'USDT on Oasys Mainnet', symbol:'usdt' },
+    { value: 190110, label: 'OAS on Homeverse Mainnet', symbol: 'oas' },
+    { value: 190111, label: 'USDC on Homeverse Mainnet',symbol:'usdc' },
+    { value: 13718, label: 'DOGA Mainnet', symbol:'doga' },
+    { value: 1901119, label: 'MARD on Homeverse', symbol:'mard' },
+    { value: 24819, label: 'MARD on Oasys', symbol:'mard' },
+    { value: 4311412, label: 'SHRAP on Avalanche Mainnet', symbol:'shrap' },
+    { value: 295480, label: 'OAS on MCH Verse', symbol:'oas' },
+    { value: 295481, label: 'USDC on MCH Verse', symbol:'usdc' },
+    { value: 2954821, label: 'MCHC on MCH Verse', symbol:'mchc' }
   ];
 
   const receivingAddressTypes = [
@@ -198,7 +212,7 @@ export default function TransactionCard({
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
-      {/* showUserAddressField prop is passed only in case of non-login form, 
+      {/* showUserAddressField prop is passed only in case of non-login form,
         where we have to explicitly take user address */}
       {showUserAddressField ? (
         <TextField
