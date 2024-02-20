@@ -17,7 +17,7 @@ import Hex from 'crypto-js/enc-hex';
 import s9yNft from '../../assets/s9ynft.jpeg';
 import { useSearchParams } from 'react-router-dom';
 
-export default function BuySingleNFT() {
+export default function BuyBulkNFT() {
 
   const [searchParams] = useSearchParams();
 
@@ -164,7 +164,7 @@ export default function BuySingleNFT() {
       }}
     >
       <Typography textAlign="center" mb={1}>
-        Buy NFT
+        Buy Bulk NFT
       </Typography>
 
       <Box textAlign="center" my={1}>
