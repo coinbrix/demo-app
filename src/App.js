@@ -61,6 +61,12 @@ function App() {
           }
         );
         window.SingularityEvent.subscribe(
+            'SingularityEvent-onTokenExpired',
+            data => {
+              console.log('Token expired', JSON.parse(data));
+            }
+        );
+        window.SingularityEvent.subscribe(
           'SingularityEvent-onTransactionSuccess',
           data => {
             console.log('Txn Successfull', JSON.parse(data));
