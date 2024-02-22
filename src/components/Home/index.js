@@ -13,6 +13,7 @@ import SignAndSendTransaction from '../SignAndSendTransaction';
 import SignTransaction from '../SignTransaction';
 import BuyNFT from '../BuyNFT';
 import BuySingleNFT from '../BuySingleNFT';
+import BuyBulkNFT from '../BuyBulkNFT';
 
 export default function Home() {
   const [name, setName] = useState();
@@ -107,6 +108,10 @@ export default function Home() {
 
       <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
         <BuySingleNFT />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuyBulkNFT />
       </Box>
 
 
