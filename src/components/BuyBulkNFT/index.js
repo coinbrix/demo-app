@@ -115,9 +115,9 @@ export default function BuyBulkNFT() {
             userRequestedNFTType: "ERC1155",
             userRequestedNFTPrice: 0.01,
             userRequestedNFTTradeType: "BUY",
-            marketplaceData : {
+            marketplaceData : JSON.stringify({
                    paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
-            }
+            })
           },
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
@@ -127,9 +127,9 @@ export default function BuyBulkNFT() {
             userRequestedNFTType: "ERC1155",
             userRequestedNFTPrice: 0.01,
             userRequestedNFTTradeType: "BUY",
-            marketplaceData : {
+            marketplaceData : JSON.stringify({
                    paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
-            }
+            })
           },
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
@@ -139,9 +139,9 @@ export default function BuyBulkNFT() {
             userRequestedNFTType: "ERC1155",
             userRequestedNFTPrice: 0.01,
             userRequestedNFTTradeType: "BUY",
-            marketplaceData : {
+            marketplaceData : JSON.stringify({
                    paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
-            }
+            })
           },
         ]
       };
