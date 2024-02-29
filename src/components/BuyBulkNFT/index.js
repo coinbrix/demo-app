@@ -110,37 +110,37 @@ export default function BuyBulkNFT() {
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
             userRequestedNFTId: 1,
-            userRequestedNFTAddress: "0x3a9007e34Be1db24D5E8c360BCA154C0B9429B55",
+            userRequestedNFTAddress: "0x8405778D8F04a4A32d9A80A40e1e64B9118fa67d",
             userRequestedNFTQuantity: 1,
             userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.01,
+            userRequestedNFTPrice: 0.001,
             userRequestedNFTTradeType: "BUY",
             marketplaceData : JSON.stringify({
-                   paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
+                   paravoxSignature: "0x9624c543cecb17f2b31b69ea57a35c53b305165ea88fabd48c56a60e735184fb777a0aa3a2a1d3a15b5f7e43c87479a7e49a8b0358de06691a56d0b30c69b2c91b"
             })
           },
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
             userRequestedNFTId: 2,
-            userRequestedNFTAddress: "0x3a9007e34Be1db24D5E8c360BCA154C0B9429B55",
+            userRequestedNFTAddress: "0x8405778D8F04a4A32d9A80A40e1e64B9118fa67d",
             userRequestedNFTQuantity: 1,
             userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.01,
+            userRequestedNFTPrice: 0.001,
             userRequestedNFTTradeType: "BUY",
             marketplaceData : JSON.stringify({
-                   paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
+                   paravoxSignature: "0x9624c543cecb17f2b31b69ea57a35c53b305165ea88fabd48c56a60e735184fb777a0aa3a2a1d3a15b5f7e43c87479a7e49a8b0358de06691a56d0b30c69b2c91b"
             })
           },
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
             userRequestedNFTId: 3,
-            userRequestedNFTAddress: "0x3a9007e34Be1db24D5E8c360BCA154C0B9429B55",
+            userRequestedNFTAddress: "0x8405778D8F04a4A32d9A80A40e1e64B9118fa67d",
             userRequestedNFTQuantity: 1,
             userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.01,
+            userRequestedNFTPrice: 0.001,
             userRequestedNFTTradeType: "BUY",
             marketplaceData : JSON.stringify({
-                   paravoxSignature: "0xkjadkajkdjakdjakdjsakjdskajdkajdkadjk"
+                   paravoxSignature: "0x9624c543cecb17f2b31b69ea57a35c53b305165ea88fabd48c56a60e735184fb777a0aa3a2a1d3a15b5f7e43c87479a7e49a8b0358de06691a56d0b30c69b2c91b"
             })
           },
         ]
