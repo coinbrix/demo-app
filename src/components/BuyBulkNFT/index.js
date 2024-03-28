@@ -130,7 +130,7 @@ export default function BuyBulkNFT() {
       
             const respData = await resp.json();
             console.log('respData', respData);
-            paravoxMarketplaceData = JSON.parse(respData);
+            paravoxMarketplaceData = JSON.parse(respData.body);
     } catch (error) {
       console.log(error);
     }
