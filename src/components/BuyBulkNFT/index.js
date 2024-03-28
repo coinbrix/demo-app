@@ -73,11 +73,11 @@ export default function BuyBulkNFT() {
   }
 
   const getNftPrice = () => {
-    return getKey() === '40875' ? '0.1' : '1'
+    return getKey() === '40875' ? '0.1' : '0.001'
   }
 
   const getTokenName = () => {
-    return getKey() === '40875' ? 'OAS' : 'MATIC'
+    return getKey() === '40875' || '19011' ? 'OAS' : 'MATIC'
   }
 
 
@@ -91,36 +91,44 @@ export default function BuyBulkNFT() {
   const [userRequestedNftPrice, setUserRequestedNftPrice] = useState(getNftPrice());
   const [loading, setLoading] = useState(false);
 
+  const [deadline, setDeadline] = useState('');
+  const [paravoxSignature, setParavoxSignature] = useState('');
+
   const initiateTransaction = async () => {
     setLoading(true);
 
     try {
       const clientReferenceId = uuidv4();
-      const raw = JSON.stringify({
-        "tokenIDs": [
-          1,2,3
-        ],
-        "amounts": [
-          1,1,1
-        ],
-        "paymentTokenAddress": "0x0000000000000000000000000000000000000000",
-        "unitPrices": [
-          0.001,
-          0.001,
-          0.001
-        ]
-      });
-      const resp = await fetch("https://mtockvm4c1.execute-api.ap-northeast-1.amazonaws.com/marketplace/marketplaceVerify", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: raw,
-      })
+      // const raw = JSON.stringify({
+      //   "tokenIDs": [
+      //     1,2,3
+      //   ],
+      //   "amounts": [
+      //     1,1,1
+      //   ],
+      //   "paymentTokenAddress": "0x0000000000000000000000000000000000000000",
+      //   "unitPrices": [
+      //     0.001,
+      //     0.001,
+      //     0.001
+      //   ]
+      // });
+      // const resp = await fetch("https://mtockvm4c1.execute-api.ap-northeast-1.amazonaws.com/marketplace/marketplaceVerify", {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: raw,
+      // })
 
-      const respData = await resp.json();
-      console.log('respData', respData);
-      const paravoxMarketplaceData = JSON.stringify(respData);
+      // const respData = await resp.json();
+      // console.log('respData', respData);
+      // const paravoxMarketplaceData = JSON.parse(respData);
+
+      const paravoxMarketplaceData = {
+        timestamp : deadline,
+        signature : paravoxSignature
+      }
 
       let body = {
         clientReferenceId,
@@ -199,20 +207,40 @@ export default function BuyBulkNFT() {
       }}
     >
       <Typography textAlign="center" mb={1}>
-        Buy Bulk NFT
+        Buy Bulk NFT (This is configured For Paravox Marketplace)
       </Typography>
 
       <Box textAlign="center" my={1}>
         <img src={s9yNft} alt="" height="100px" />
       </Box>
 
-
+{/* 
       <TextField
         placeholder="Quantity"
         label="Quantity"
         type={'number'}
         value={userRequestedNftQuantity}
         onChange={e => setUserRequestedNftQuantity(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      /> */}
+
+      <TextField
+        placeholder="signature"
+        label="Signature"
+        type={'text'}
+        value={paravoxSignature}
+        onChange={e => setParavoxSignature(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="Signature Deadline"
+        label="Deadline"
+        type={'text'}
+        value={paravoxSignature}
+        onChange={e => setDeadline(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
