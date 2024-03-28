@@ -99,36 +99,39 @@ export default function BuyBulkNFT() {
 
     try {
       const clientReferenceId = uuidv4();
-      // const raw = JSON.stringify({
-      //   "tokenIDs": [
-      //     1,2,3
-      //   ],
-      //   "amounts": [
-      //     1,1,1
-      //   ],
-      //   "paymentTokenAddress": "0x0000000000000000000000000000000000000000",
-      //   "unitPrices": [
-      //     0.001,
-      //     0.001,
-      //     0.001
-      //   ]
-      // });
-      // const resp = await fetch("https://mtockvm4c1.execute-api.ap-northeast-1.amazonaws.com/marketplace/marketplaceVerify", {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: raw,
-      // })
 
-      // const respData = await resp.json();
-      // console.log('respData', respData);
-      // const paravoxMarketplaceData = JSON.parse(respData);
-
-      const paravoxMarketplaceData = {
+      let paravoxMarketplaceData = {
         timestamp : deadline,
         signature : paravoxSignature
       }
+
+      const raw = JSON.stringify({
+        "tokenIDs": [
+          1,2,3
+        ],
+        "amounts": [
+          1,1,1
+        ],
+        "paymentTokenAddress": "0x0000000000000000000000000000000000000000",
+        "unitPrices": [
+          0.001,
+          0.001,
+          0.001
+        ]
+      });
+      const resp = await fetch("https://mtockvm4c1.execute-api.ap-northeast-1.amazonaws.com/marketplace/marketplaceVerify", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: raw,
+      })
+
+      const respData = await resp.json();
+      console.log('respData', respData);
+      paravoxMarketplaceData = JSON.parse(respData);
+
+
 
       let body = {
         clientReferenceId,
