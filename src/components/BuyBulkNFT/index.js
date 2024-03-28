@@ -239,7 +239,7 @@ export default function BuyBulkNFT() {
         placeholder="Signature Deadline"
         label="Deadline"
         type={'text'}
-        value={paravoxSignature}
+        value={deadline}
         onChange={e => setDeadline(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
