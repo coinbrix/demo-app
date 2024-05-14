@@ -108,16 +108,14 @@ export default function BuyBulkNFT() {
     try {
             const raw = JSON.stringify({
               "tokenIDs": [
-                1,2,3
+                1
               ],
               "amounts": [
-                1,1,1
+                1
               ],
               "paymentTokenAddress": "0x0000000000000000000000000000000000000000",
               "unitPrices": [
-                0.001,
-                0.001,
-                0.001
+                0.41086
               ]
             });
             const resp = await fetch("https://mtockvm4c1.execute-api.ap-northeast-1.amazonaws.com/marketplace/marketplaceVerify", {
@@ -150,40 +148,16 @@ export default function BuyBulkNFT() {
           {
             marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
             userRequestedNFTId: 1,
-            userRequestedNFTAddress: "0x9985cB1b9924fd8aEaf1a8b46C1A9b597bfc689F",
+            userRequestedNFTAddress: "0x04B9762d2777c2aA394a67e0772598DF88738fBa",
             userRequestedNFTQuantity: 1,
             userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.001,
+            userRequestedNFTPrice: 0.41086,
             userRequestedNFTTradeType: "BUY",
             marketplaceData : JSON.stringify({
                    deadline: paravoxMarketplaceData.timestamp,
                    paravoxSignature: paravoxMarketplaceData.signature
             })
-          },
-          {
-            marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
-            userRequestedNFTId: 2,
-            userRequestedNFTAddress: "0x9985cB1b9924fd8aEaf1a8b46C1A9b597bfc689F",
-            userRequestedNFTQuantity: 1,
-            userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.001,
-            userRequestedNFTTradeType: "BUY",
-            marketplaceData : JSON.stringify({
-              deadline: paravoxMarketplaceData.timestamp,
-              paravoxSignature: paravoxMarketplaceData.signature            })
-          },
-          {
-            marketplaceId: "PARAVOX_PRIMARY_MARKETPLACE_19011",
-            userRequestedNFTId: 3,
-            userRequestedNFTAddress: "0x9985cB1b9924fd8aEaf1a8b46C1A9b597bfc689F",
-            userRequestedNFTQuantity: 1,
-            userRequestedNFTType: "ERC1155",
-            userRequestedNFTPrice: 0.001,
-            userRequestedNFTTradeType: "BUY",
-            marketplaceData : JSON.stringify({
-              deadline: paravoxMarketplaceData.timestamp,
-              paravoxSignature: paravoxMarketplaceData.signature            })
-          },
+          }
         ]
       };
       const secret =
