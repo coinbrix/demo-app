@@ -49,11 +49,11 @@ export default function BuySingleNFT() {
   ];
 
   const getClientRequestedAssetId = () => {
-    return getKey() === '40875' ? '408750' : '800010'
+    return getKey() === '40875' ? '408750' : '1370'
   }
 
   const getMarketplaceId = () => {
-    return getKey() === '40875' ? 'MARKETPLACE_2' : 'MARKETPLACE_1'
+    return getKey() === '40875' ? 'MARKETPLACE_2' : 'MARKETPLACE_137'
   }
 
   const getNftId = () => {
@@ -61,7 +61,7 @@ export default function BuySingleNFT() {
   }
 
   const getNftAddress = () => {
-    return getKey() === '40875' ? '0x32AA1A10383C0499FaA7ed09Bc52424A99985E35' : '0x572954A0db4bdA484CebbD6e50dBA519d35230Bc'
+    return getKey() === '40875' ? '0x32AA1A10383C0499FaA7ed09Bc52424A99985E35' : '0xe7dc587750fEd26D9E19B662195e8b0B46291BaA'
   }
 
   const getNftType = () => {
@@ -73,7 +73,7 @@ export default function BuySingleNFT() {
   }
 
   const getNftPrice = () => {
-    return getKey() === '40875' ? '0.1' : '1'
+    return getKey() === '40875' ? '0.1' : '0.01'
   }
 
   const getTokenName = () => {
