@@ -90,12 +90,19 @@ export default function BuySingleNFTUbisoft() {
   const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState(getTradeType);
   const [userRequestedNftPrice, setUserRequestedNftPrice] = useState(getNftPrice());
   const [loading, setLoading] = useState(false);
+  const [requestId, setRequestId] = useState(0);
 
   const initiateTransaction = async () => {
     setLoading(true);
 
     try {
       const clientReferenceId = uuidv4();
+
+      const marketplaceData = {
+        requestId: requestId,
+        additionalFees: [],
+        additionalFeeRecipients: []
+      }
 
       let body = {
         clientReferenceId,
@@ -114,7 +121,10 @@ export default function BuySingleNFTUbisoft() {
             userRequestedNFTQuantity: userRequestedNftQuantity,
             userRequestedNFTType: userRequestedNftType,
             userRequestedNFTPrice: userRequestedNftPrice,
-            userRequestedNFTTradeType: userRequestedNFTTradeType
+            userRequestedNFTTradeType: userRequestedNFTTradeType,
+            marketplaceData: JSON.stringify(
+              marketplaceData
+            )
           }
         ]
       };
@@ -163,6 +173,16 @@ export default function BuySingleNFTUbisoft() {
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
+
+      <TextField
+        placeholder="Sequence Request Id (Default is 0)"
+        label="RequestId"
+        type={'number'}
+        value={requestId}
+        onChange={e => setRequestId(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />     
 
       <div>
         1 NFT = {getNftPrice()} {getTokenName()}
