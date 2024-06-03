@@ -15,6 +15,7 @@ import BuyNFT from '../BuyNFT';
 import BuySingleNFT from '../BuySingleNFT';
 import BuyBulkNFT from '../BuyBulkNFT';
 import BuySingleNFTUbisoft from '../BuySingleNFTUbisoft';
+import BuySingleERC721NFTUbisoft from '../BuySingleERC721NFTUbisoft';
 
 export default function Home() {
   const [name, setName] = useState();
@@ -117,6 +118,10 @@ export default function Home() {
 
       <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
         <BuySingleNFTUbisoft />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuySingleERC721NFTUbisoft />
       </Box>
 
 
