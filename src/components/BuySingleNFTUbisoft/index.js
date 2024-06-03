@@ -53,7 +53,7 @@ export default function BuySingleNFTUbisoft() {
   }
 
   const getMarketplaceId = () => {
-    return 'UBISOFT_MARKETPLACE_19011'
+    return 'CHAMPIONS_TACTICS_MARKETPLACE_19011'
   }
 
   const getNftId = () => {
