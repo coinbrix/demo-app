@@ -151,7 +151,8 @@ export default function TransactionCard({
       console.log('Body to generate signature ---->', body);
       const requestString = JSON.stringify(body);
       const signature = Hex.stringify(hmacSHA512(requestString, secret));
-      window.SingularityEvent.transactionFlow(requestString, signature);
+      // window.SingularityEvent.transactionFlow(requestString, signature,"", {byPassPaymentOptions: true, paymentAssetId: '2481'});
+      window.SingularityEvent.transactionFlow(requestString, signature)
       if (gamerAddress && handleBuyAsset) {
         handleBuyAsset();
       }
