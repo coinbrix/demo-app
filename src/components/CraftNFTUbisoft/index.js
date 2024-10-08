@@ -115,7 +115,7 @@ export default function CraftNFTUbisoft() {
         redirect: "follow"
       };
   
-      const response = await fetch("http://127.0.0.1:3001/api/s9y-test-apis/ubisoft/craft/get-data-signature", requestOptions)
+      const response = await fetch("https://s9ycc.s9y-qal.com/api/s9y-test-apis/ubisoft/craft/get-data-signature", requestOptions)
       const data = await response.json()
       console.log("api data ", data)
   
