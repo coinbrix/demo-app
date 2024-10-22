@@ -13,6 +13,10 @@ import SignAndSendTransaction from '../SignAndSendTransaction';
 import SignTransaction from '../SignTransaction';
 import BuyNFT from '../BuyNFT';
 import BuySingleNFT from '../BuySingleNFT';
+import BuyBulkNFT from '../BuyBulkNFT';
+import BuySingleNFTUbisoft from '../BuySingleNFTUbisoft';
+import BuySingleERC721NFTUbisoft from '../BuySingleERC721NFTUbisoft';
+import CraftNFTUbisoft from '../CraftNFTUbisoft';
 
 export default function Home() {
   const [name, setName] = useState();
@@ -109,6 +113,22 @@ export default function Home() {
         <BuySingleNFT />
       </Box>
 
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuyBulkNFT />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuySingleNFTUbisoft />
+      </Box>
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <BuySingleERC721NFTUbisoft />
+      </Box>
+
+
+      <Box style={{ marginLeft: '100px', marginTop: '100px' }}>
+        <CraftNFTUbisoft />
+      </Box>
 
 
       <Box style={{ marginLeft: '100px', marginTop: '100px' }}>

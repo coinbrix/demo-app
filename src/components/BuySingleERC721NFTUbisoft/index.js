@@ -17,7 +17,7 @@ import Hex from 'crypto-js/enc-hex';
 import s9yNft from '../../assets/s9ynft.jpeg';
 import { useSearchParams } from 'react-router-dom';
 
-export default function BuySingleNFT() {
+export default function BuySingleERC721NFTUbisoft() {
 
   const [searchParams] = useSearchParams();
 
@@ -36,8 +36,8 @@ export default function BuySingleNFT() {
 
   const nftTypes = [
     {
-      value: 'ERC1155',
-      label: 'ERC1155',
+      value: 'ERC721',
+      label: 'ERC721',
     },
   ];
 
@@ -49,35 +49,35 @@ export default function BuySingleNFT() {
   ];
 
   const getClientRequestedAssetId = () => {
-    return getKey() === '40875' ? '408750' : '1370'
+    return '19011000'
   }
 
   const getMarketplaceId = () => {
-    return getKey() === '40875' ? 'MARKETPLACE_2' : 'MARKETPLACE_137'
+    return 'CHAMPIONS_TACTICS_MARKETPLACE_19011'
   }
 
   const getNftId = () => {
-    return getKey() === '40875' ? '0' : '0'
+    return '0'
   }
 
   const getNftAddress = () => {
-    return getKey() === '40875' ? '0x32AA1A10383C0499FaA7ed09Bc52424A99985E35' : '0xe7dc587750fEd26D9E19B662195e8b0B46291BaA'
+    return '0x17805889212E24D785A842BA03279543b4a14B9F'
   }
 
   const getNftType = () => {
-    return getKey() === '40875' ? 'ERC1155' : 'ERC1155'
+    return 'ERC721'
   }
 
   const getTradeType = () => {
-    return getKey() === '40875' ? 'BUY' : 'BUY'
+    return 'BUY'
   }
 
   const getNftPrice = () => {
-    return getKey() === '40875' ? '0.1' : '0.01'
+    return '0.01'
   }
 
   const getTokenName = () => {
-    return getKey() === '40875' ? 'OAS' : 'MATIC'
+    return 'WOAS'
   }
 
 
@@ -90,12 +90,19 @@ export default function BuySingleNFT() {
   const [userRequestedNFTTradeType, setUserRequestedNFTTradeType] = useState(getTradeType);
   const [userRequestedNftPrice, setUserRequestedNftPrice] = useState(getNftPrice());
   const [loading, setLoading] = useState(false);
+  const [requestId, setRequestId] = useState(0);
 
   const initiateTransaction = async () => {
     setLoading(true);
 
     try {
       const clientReferenceId = uuidv4();
+
+      const marketplaceData = {
+        requestId: requestId,
+        additionalFees: [],
+        additionalFeeRecipients: []
+      }
 
       let body = {
         clientReferenceId,
@@ -114,7 +121,10 @@ export default function BuySingleNFT() {
             userRequestedNFTQuantity: userRequestedNftQuantity,
             userRequestedNFTType: userRequestedNftType,
             userRequestedNFTPrice: userRequestedNftPrice,
-            userRequestedNFTTradeType: userRequestedNFTTradeType
+            userRequestedNFTTradeType: userRequestedNFTTradeType,
+            marketplaceData: JSON.stringify(
+              marketplaceData
+            )
           }
         ]
       };
@@ -146,12 +156,32 @@ export default function BuySingleNFT() {
       }}
     >
       <Typography textAlign="center" mb={1}>
-        Buy NFT
+        Buy ERC721 NFT (Ubisoft Sequence Marketplace)
       </Typography>
 
       <Box textAlign="center" my={1}>
         <img src={s9yNft} alt="" height="100px" />
       </Box>
+
+      <TextField
+        placeholder="ERC721 NFT Address"
+        label="NFT Address"
+        type={'text'}
+        value={userRequestedNftAddress}
+        onChange={e => setUserRequestedNftAddress(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+<TextField
+        placeholder="ERC721 NFT Id"
+        label="NFT Id"
+        type={'text'}
+        value={userRequestedNftId}
+        onChange={e => setUserRequestedNftId(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
 
 
       <TextField
@@ -163,6 +193,26 @@ export default function BuySingleNFT() {
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
+
+      <TextField
+        placeholder="NFT Price"
+        label="Price"
+        type={'number'}
+        value={userRequestedNftPrice}
+        onChange={e => setUserRequestedNftPrice(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="Sequence Request Id (Default is 0)"
+        label="RequestId"
+        type={'number'}
+        value={requestId}
+        onChange={e => setRequestId(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />     
 
       <div>
         1 NFT = {getNftPrice()} {getTokenName()}
