@@ -25,30 +25,6 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Singularity Demo App</title>
-    <script>
-      (function (w, d, s, o, f, js, fjs, e) {
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-        w.SingularityEnv = e;
-      })(
-        window,
-        document,
-        'script',
-        'Singularity',
-        'https://unpkg.com/singularity-client-script@v1.8.6-sandbox.2/index.js',
-        '',
-        '',
-        '%REACT_APP_ENV%'
-      );
-    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
