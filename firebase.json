@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "demo-singularity",
+    "site": "prod-s9y",
     "public": "build",
     "ignore": [
       "firebase.json",

@@ -2,33 +2,31 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - production
-
+      - firebase
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.17.0'
-      
+          node-version: '16.19.0'  # Matching Amplify's version
+
       - name: Install Dependencies
-        run: npm ci
-      
+        run: npm ci  # Using ci instead of install, just like Amplify
+
       - name: Build
-        env:
-          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
-          _CUSTOM_IMAGE: ${{ secrets._CUSTOM_IMAGE }}
         run: |
-          echo "REACT_APP_ENV=$REACT_APP_ENV" >> .env
+          echo "REACT_APP_ENV=${{ secrets.REACT_APP_ENV }}" >> .env
+          echo "_CUSTOM_IMAGE=${{ secrets._CUSTOM_IMAGE }}" >> .env
           npm run build
-          
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SINGULARITY_PRODUCTION }}'
           projectId: singularity-production
           channelId: live
+          site: prod-s9y  # Updated site name to match your Firebase hosting site
