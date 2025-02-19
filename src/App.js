@@ -38,7 +38,7 @@ function App() {
     }
     localStorage.setItem('singularity-key', key);
 
-    initializeSingularity(window, document,'1.8.8-sandbox.1','production',key,async () => {
+    initializeSingularity(window, document,'latest','production',key,async () => {
       console.log('----------singularity init callback--------')
 
       window.SingularityEvent.subscribe('SingularityEvent-logout', () => {
