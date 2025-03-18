@@ -135,31 +135,31 @@ export default function BuyNFT() {
         }
       }
 
-      let reservoirData = {}
+      let reservoirMarketPlaceData = {}
       if(module) {
-        reservoirData = {
-          ...reservoirData,
+        reservoirMarketPlaceData = {
+          ...reservoirMarketPlaceData,
           module: module
         }
       }
 
       if(module) {
-        reservoirData = {
-          ...reservoirData,
+        reservoirMarketPlaceData = {
+          ...reservoirMarketPlaceData,
           module: module
         }
       }
 
       if(data) {
-        reservoirData = {
-          ...reservoirData,
+        reservoirMarketPlaceData = {
+          ...reservoirMarketPlaceData,
           data: data
         }
       }
 
       if(value) {
-        reservoirData = {
-          ...reservoirData,
+        reservoirMarketPlaceData = {
+          ...reservoirMarketPlaceData,
           value: value
         }
       }
@@ -178,10 +178,10 @@ export default function BuyNFT() {
       const secret =
         'SSk49aq1/kQ1eKH7Sg+u4JsisvrycRcLopHdM6lNEMVe/p7lsSVoRiY0neFYNJkHoWVEK30bPAV2pNU2WwOJXQ==';
 
-      if(Object.keys(reservoirData).length>0) {
+      if(Object.keys(reservoirMarketPlaceData).length>0) {
         body = {
           ...body,
-          reservoirData: reservoirData
+          reservoirMarketPlaceData: reservoirMarketPlaceData
         }
       }
 
