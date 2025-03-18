@@ -51,6 +51,10 @@ export default function BuyNFT() {
   const [seaportOrderHash, setSeaportOrderHash] = useState('');
   const [seaportOrderData, setSeaportOrderData] = useState('');
 
+  const [module, setModule] = useState('');
+  const [data, setData] = useState('');
+  const [value, setValue] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const initiateTransaction = async () => {
@@ -131,6 +135,35 @@ export default function BuyNFT() {
         }
       }
 
+      let reservoirData = {}
+      if(module) {
+        reservoirData = {
+          ...reservoirData,
+          module: module
+        }
+      }
+
+      if(module) {
+        reservoirData = {
+          ...reservoirData,
+          module: module
+        }
+      }
+
+      if(data) {
+        reservoirData = {
+          ...reservoirData,
+          data: data
+        }
+      }
+
+      if(value) {
+        reservoirData = {
+          ...reservoirData,
+          value: value
+        }
+      }
+
       let body = {
         clientReferenceId,
         singularityTransactionType: 'NFT_PURCHASE',
@@ -144,6 +177,13 @@ export default function BuyNFT() {
       };
       const secret =
         'SSk49aq1/kQ1eKH7Sg+u4JsisvrycRcLopHdM6lNEMVe/p7lsSVoRiY0neFYNJkHoWVEK30bPAV2pNU2WwOJXQ==';
+
+      if(Object.keys(reservoirData).length>0) {
+        body = {
+          ...body,
+          reservoirData: reservoirData
+        }
+      }
 
       console.log('Body to generate signature ---->', body);
       const requestString = JSON.stringify(body);
@@ -275,6 +315,33 @@ export default function BuyNFT() {
         label="seaportOrderData"
         value={seaportOrderData}
         onChange={e => setSeaportOrderData(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="reservoirModule"
+        label="reservoirModule"
+        value={module}
+        onChange={e => setModule(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="reservoirData"
+        label="reservoirData"
+        value={data}
+        onChange={e => setData(e.target.value)}
+        inputProps={{ style: { fontSize: '20px', height: '100%' } }}
+        sx={{ mt: 1 }}
+      />
+
+      <TextField
+        placeholder="reservoirValue"
+        label="reservoirValue"
+        value={value}
+        onChange={e => setValue(e.target.value)}
         inputProps={{ style: { fontSize: '20px', height: '100%' } }}
         sx={{ mt: 1 }}
       />
